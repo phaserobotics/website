@@ -1,0 +1,119 @@
+.about {
+  background: var(--color-bg-dark);
+  padding: var(--spacing-2xl) 0;
+}
+
+.about__container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+}
+
+.about__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-2xl);
+}
+
+.about__intro {
+  max-width: 500px;
+}
+
+.about__label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.1em;
+  display: block;
+  margin-bottom: var(--spacing-sm);
+}
+
+.about__title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: var(--spacing-lg);
+  letter-spacing: -0.02em;
+  color: var(--color-text-light);
+}
+
+.about__text {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  line-height: 1.8;
+  margin-bottom: var(--spacing-md);
+}
+
+.about__text:last-of-type {
+  margin-bottom: 0;
+}
+
+.about__values {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.about__value {
+  display: flex;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  border: 1px solid var(--color-border-dark);
+  transition: border-color var(--transition-normal);
+}
+
+.about__value:hover {
+  border-color: var(--color-text-muted);
+}
+
+.about__value-number {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+.about__value-content {
+  flex: 1;
+}
+
+.about__value-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-text-light);
+  margin-bottom: var(--spacing-xs);
+}
+
+.about__value-description {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+@media (max-width: 1024px) {
+  .about__grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+  }
+
+  .about__intro {
+    max-width: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .about {
+    padding: var(--spacing-xl) 0;
+  }
+
+  .about__container {
+    padding: 0 var(--spacing-sm);
+  }
+
+  .about__value {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+}
+
+
