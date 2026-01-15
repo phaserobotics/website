@@ -29,7 +29,7 @@ function Features() {
           <text x="24" y="35" fontSize="8" fill="currentColor" fontFamily="monospace">IoT</text>
         </svg>
       ),
-      title: 'IoT Integration',
+      title: 'Seamless Integration',
       emoji: '📡',
       description: 'Connect and monitor your robotics systems remotely with our embedded connectivity solutions.'
     },
@@ -87,5 +87,8 @@ function Features() {
 }
 
 export default Features
+
+
+
 
 

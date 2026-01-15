@@ -2,15 +2,20 @@ import HeroAnimation from './HeroAnimation'
 import './Hero.css'
 
 function Hero() {
+  const scrollToProducts = (e) => {
+    e.preventDefault()
+    document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' })
+  }
+
   return (
     <section className="hero" id="home">
       <div className="hero__content">
-        <div className="hero__text">
+        <div className="hero__left">
           <h1 className="hero__title">
-            Dynamiq Electronics: Powering the Future, Line by Line.
+            Dynamiq Electronics
           </h1>
           <p className="hero__subtitle">
-            Advanced Robotics & Motor Control Solutions for the Modern World.
+            Reimagining Robotics.
           </p>
           <div className="hero__actions">
             <a href="#products" className="hero__btn hero__btn--primary">
@@ -21,8 +26,18 @@ function Hero() {
             </a>
           </div>
         </div>
-        <div className="hero__image">
-          <img src="/motor_hero.png" alt="Eclipse Drive Motor Controller" />
+        
+        <div className="hero__right">
+          <span className="hero__statement-line">Advanced Robotics</span>
+          <span className="hero__statement-line hero__statement-line--accent">Made Simple.</span>
+          <button onClick={scrollToProducts} className="hero__scroll-btn">
+            <span className="hero__scroll-btn-text">Discover Eclipse Drive</span>
+            <span className="hero__scroll-btn-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M12 5v14M5 12l7 7 7-7" />
+              </svg>
+            </span>
+          </button>
         </div>
       </div>
       
