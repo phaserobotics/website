@@ -26,7 +26,7 @@ function Products() {
             <div className="products__image-container">
               <div className="products__image-wrapper">
                 <img 
-                  src="/eclipse_drive.png" 
+                  src="/BlackBackground.png" 
                   alt="Eclipse Drive V2 Motor Controller" 
                   className="products__image"
                 />
