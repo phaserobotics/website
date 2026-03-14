@@ -15,7 +15,7 @@ function HeroAnimation() {
     let height = container.clientHeight || window.innerHeight
 
     // Configuration
-    const GRID_SIZE = 12
+    const GRID_SIZE = 10
     const GRID_GAP = 0
     const BURST_RADIUS = 35
     const CORE_RADIUS_PCT = 0.4

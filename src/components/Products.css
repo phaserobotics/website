@@ -56,19 +56,19 @@
   overflow: hidden;
 }
 
-.products__image-placeholder {
+.products__image-wrapper {
   aspect-ratio: 1;
-  padding: var(--spacing-xl);
+  padding: var(--spacing-lg);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-text-light);
+  background: var(--color-bg-dark);
 }
 
-.products__image-placeholder svg {
+.products__image {
   width: 100%;
   height: 100%;
-  max-width: 300px;
+  object-fit: contain;
 }
 
 .products__image-label {
@@ -195,5 +195,6 @@
     padding: var(--spacing-md);
   }
 }
+
 
 

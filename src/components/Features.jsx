@@ -4,19 +4,12 @@ function Features() {
   const features = [
     {
       icon: (
-        <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" strokeWidth="1.5">
-          <rect x="10" y="10" width="40" height="40" strokeDasharray="4 2" />
-          <rect x="18" y="18" width="24" height="24" />
-          <circle cx="30" cy="30" r="6" />
-          <line x1="30" y1="10" x2="30" y2="18" />
-          <line x1="30" y1="42" x2="30" y2="50" />
-          <line x1="10" y1="30" x2="18" y2="30" />
-          <line x1="42" y1="30" x2="50" y2="30" />
-        </svg>
+        <img src="/BlackBackground.png" alt="Eclipse Drive" className="feature-card__product-image" />
       ),
       title: 'Motor Control',
       emoji: '⚡',
-      description: 'Advanced BLDC motor drivers with precise torque control and seamless integration for robotics applications.'
+      description: 'Advanced BLDC motor drivers with precise torque control and seamless integration for robotics applications.',
+      isImage: true
     },
     {
       icon: (
@@ -29,7 +22,7 @@ function Features() {
           <text x="24" y="35" fontSize="8" fill="currentColor" fontFamily="monospace">IoT</text>
         </svg>
       ),
-      title: 'IoT Integration',
+      title: 'Seamless Integration',
       emoji: '📡',
       description: 'Connect and monitor your robotics systems remotely with our embedded connectivity solutions.'
     },
@@ -87,5 +80,8 @@ function Features() {
 }
 
 export default Features
+
+
+
 
 

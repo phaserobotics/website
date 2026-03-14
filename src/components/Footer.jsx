@@ -29,8 +29,8 @@ function Footer() {
               Powering the future of robotics, one line of code at a time.
             </p>
             <div className="footer__contact">
-              <a href="mailto:hello@dynamiq.io" className="footer__email">
-                hello@dynamiq.io
+              <a href="mailto:dynamiq.robotics@gmail.com" className="footer__email">
+                dynamiq.robotics@gmail.com
               </a>
             </div>
           </div>
@@ -106,5 +106,8 @@ function Footer() {
 }
 
 export default Footer
+
+
+
 
 
