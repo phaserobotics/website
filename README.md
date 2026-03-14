@@ -1,6 +1,6 @@
-# Dynamiq Electronics Website
+# Phase Robotics Website
 
-A modern React website for Dynamiq Electronics featuring an interactive pixel art animation hero section.
+A modern React website for Phase Robotics featuring an interactive pixel art animation hero section.
 
 ## Project Structure
 
@@ -85,16 +85,16 @@ Make sure the `.htaccess` file is uploaded. It handles:
 - Gzip compression
 
 ### Deploying to a Subfolder
-If deploying to `yourdomain.com/dynamiq/` instead of root:
+If deploying to `yourdomain.com/phase-robotics/` instead of root:
 
 1. Edit `vite.config.js`:
 ```js
-base: '/dynamiq/',
+base: '/phase-robotics/',
 ```
 
 2. Rebuild: `npm run build`
 
-3. Upload `dist/` contents to the `dynamiq/` folder in cPanel
+3. Upload `dist/` contents to the `phase-robotics/` folder in cPanel
 
 ## Features
 

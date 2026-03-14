@@ -24,7 +24,7 @@ function Navbar() {
     <nav className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
       <div className="navbar__container">
         <a href="#" className="navbar__logo">
-          <img src="/logo.png" alt="Dynamiq" className="navbar__logo-img" />
+          <img src="/logo.png" alt="Phase Robotics" className="navbar__logo-img" />
         </a>
 
         <div className={`navbar__links ${menuOpen ? 'navbar__links--open' : ''}`}>

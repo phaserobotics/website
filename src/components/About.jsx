@@ -29,7 +29,7 @@ function About() {
               Robotics for Everyone
             </h2>
             <p className="about__text">
-              Dynamiq Electronics was founded with a single mission: to make high-performance 
+              Phase Robotics was founded with a single mission: to make high-performance 
               robotics accessible. We believe that powerful motor control shouldn't require 
               a PhD or a massive budget.
             </p>

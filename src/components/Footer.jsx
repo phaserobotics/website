@@ -24,13 +24,13 @@ function Footer() {
       <div className="footer__container">
         <div className="footer__main">
           <div className="footer__brand">
-            <img src="/logo.png" alt="Dynamiq" className="footer__logo" />
+            <img src="/logo.png" alt="Phase Robotics" className="footer__logo" />
             <p className="footer__tagline">
               Powering the future of robotics, one line of code at a time.
             </p>
             <div className="footer__contact">
-              <a href="mailto:dynamiq.robotics@gmail.com" className="footer__email">
-                dynamiq.robotics@gmail.com
+              <a href="mailto:phase.robotics@gmail.com" className="footer__email">
+                phase.robotics@gmail.com
               </a>
             </div>
           </div>
@@ -93,7 +93,7 @@ function Footer() {
 
         <div className="footer__bottom">
           <p className="footer__copyright">
-            © {new Date().getFullYear()} Dynamiq Electronics. All rights reserved.
+            © {new Date().getFullYear()} Phase Robotics. All rights reserved.
           </p>
           <div className="footer__legal">
             <a href="#" className="footer__legal-link">Privacy</a>
