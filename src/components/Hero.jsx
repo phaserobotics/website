@@ -1,29 +1,37 @@
-import HeroAnimation from './HeroAnimation'
+import GameOfLife from './GameOfLife'
 import './Hero.css'
 
 function Hero() {
   return (
     <section className="hero" id="home">
-      <div className="hero__header">
+      <GameOfLife className="hero__life" interactive cellSize={15} />
+
+      <div className="hero__content">
+        <span className="hero__kicker">// ROBOTIC ACTUATORS · MODULAR BY DESIGN</span>
         <h1 className="hero__title">
-          Phase Robotics
+          Precise motion for
+          <br />
+          any robot you can imagine
+          <span className="cursor-blink" aria-hidden="true"></span>
         </h1>
         <p className="hero__subtitle">
-          Advanced Robotics & Motor Control Solutions for the Modern World.
+          Phase Robotics builds easy-to-use, affordable robotic actuators —
+          closed-loop precision that snaps together like building blocks,
+          from a single joint to a full machine.
         </p>
         <div className="hero__actions">
-          <a href="#products" className="hero__btn hero__btn--primary">
-            Explore Products
-          </a>
-          <a href="#about" className="hero__btn hero__btn--secondary">
-            Learn More
-          </a>
+          <a href="#products" className="btn btn--primary">Explore products</a>
+          <a href="#why" className="btn">Why Phase</a>
+        </div>
+        <div className="hero__stats">
+          <span>3 CONTROL MODES</span>
+          <span>63 NODES / BUS</span>
+          <span>14-BIT FEEDBACK</span>
         </div>
       </div>
-      
-      <div className="hero__animation">
-        <HeroAnimation />
-      </div>
+
+      <span className="hero__hint">▚ CLICK THE GRID — IT'S ALIVE (CONWAY, 1970)</span>
+      <span className="hero__scroll">SCROLL ▼</span>
     </section>
   )
 }

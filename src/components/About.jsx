@@ -1,49 +1,50 @@
+import AsciiActuator from './AsciiActuator'
 import './About.css'
 
-function About() {
-  const values = [
-    {
-      number: '01',
-      title: 'Accessibility',
-      description: 'Making advanced robotics technology available to everyone, from hobbyists to professionals.'
-    },
-    {
-      number: '02',
-      title: 'Performance',
-      description: 'No compromises on quality. Every product is engineered for reliability and precision.'
-    },
-    {
-      number: '03',
-      title: 'Community',
-      description: 'Open-source philosophy with extensive documentation and developer support.'
-    }
-  ]
+const VALUES = [
+  {
+    number: '01',
+    title: 'Accessible',
+    description: 'Priced and documented for everyone — students, labs, and startups alike.',
+  },
+  {
+    number: '02',
+    title: 'Precise',
+    description: 'Closed-loop FOC and real magnetic feedback in every unit, not just the datasheet.',
+  },
+  {
+    number: '03',
+    title: 'Open',
+    description: 'Open protocols, Python tooling, and docs that respect your time.',
+  },
+]
 
+function About() {
   return (
     <section className="about" id="about">
-      <div className="about__container">
+      <div className="container">
         <div className="about__grid">
-          <div className="about__intro">
-            <span className="about__label">// ABOUT US</span>
-            <h2 className="about__title">
-              Robotics for Everyone
-            </h2>
+          <div className="about__intro" data-reveal>
+            <span className="section-label about__label">// 03 — ABOUT</span>
+            <h2 className="section-title">Robots are made of joints</h2>
             <p className="about__text">
-              Phase Robotics was founded with a single mission: to make high-performance 
-              robotics accessible. We believe that powerful motor control shouldn't require 
-              a PhD or a massive budget.
+              Phase Robotics exists to make those joints boring — in the best way.
+              An actuator should be something you order, bolt on, and command.
+              Not a research project.
             </p>
             <p className="about__text">
-              Our team combines expertise in embedded systems, power electronics, and software 
-              to create products that just work — out of the box, no compromises.
+              We combine embedded systems, power electronics, and open tooling into
+              actuators that are precise enough for serious robots and affordable
+              enough for everyone building one.
             </p>
+            <AsciiActuator />
           </div>
 
-          <div className="about__values">
-            {values.map((value, index) => (
-              <div key={index} className="about__value">
+          <div className="about__values" data-reveal>
+            {VALUES.map((value) => (
+              <div key={value.number} className="about__value">
                 <span className="about__value-number">{value.number}</span>
-                <div className="about__value-content">
+                <div>
                   <h3 className="about__value-title">{value.title}</h3>
                   <p className="about__value-description">{value.description}</p>
                 </div>
@@ -57,8 +58,3 @@ function About() {
 }
 
 export default About
-
-
-
-
-

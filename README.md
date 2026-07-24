@@ -1,31 +1,64 @@
 # Phase Robotics Website
 
-A modern React website for Phase Robotics featuring an interactive pixel art animation hero section.
+Minimalist black & white site for Phase Robotics — easy-to-use, affordable,
+precise, modular robotic actuators. Features a live Conway's Game of Life hero
+(the logo is a glider), ASCII/pixel-art accents, and interactive 3D PCB viewers
+exported straight from the KiCad sources.
 
 ## Project Structure
 
 ```
 website/
-├── public/                 # Static assets (copied to dist on build)
-│   ├── .htaccess          # Apache routing rules for SPA
-│   ├── logo.png           # Company logo
-│   └── eclipse_drive.png  # Product image
+├── public/                    # Static assets (copied to dist on build)
+│   ├── .htaccess              # Apache routing rules for SPA
+│   ├── glider.svg             # Logo / favicon (Conway glider)
+│   ├── phalanx_exploded.png   # Phalanx cycloidal reducer exploded view
+│   ├── draco/                 # Draco decoder (for compressed GLB models)
+│   └── models/
+│       ├── lunar-drive.glb    # Lunar Drive V2.1 PCB (kicad-cli export, Draco-compressed)
+│       └── phalanx-drive.glb  # Phalanx Drive PCB (kicad-cli export, Draco-compressed)
 ├── src/
-│   ├── main.jsx           # React entry point
-│   ├── App.jsx            # Main app component
-│   ├── index.css          # Global styles & CSS variables
+│   ├── main.jsx               # React entry point
+│   ├── App.jsx                # Layout + scroll-reveal observer
+│   ├── index.css              # Global styles & CSS variables
 │   └── components/
-│       ├── Navbar.jsx/css    # Navigation header
-│       ├── Hero.jsx/css      # Hero section with CTA
-│       ├── HeroAnimation.jsx # Three.js pixel animation
-│       ├── Features.jsx/css  # Service cards section
-│       ├── Products.jsx/css  # Eclipse Drive showcase
-│       ├── About.jsx/css     # Company values
-│       └── Footer.jsx/css    # Footer with newsletter
-├── index.html             # HTML entry point
-├── vite.config.js         # Vite configuration
-└── package.json           # Dependencies
+│       ├── Navbar.jsx/css     # Fixed header with glider logo
+│       ├── Hero.jsx/css       # Headline over interactive Game of Life
+│       ├── GameOfLife.jsx     # Canvas Life sim (hero bg + footer strip)
+│       ├── GliderLogo.jsx     # Inline SVG glider mark
+│       ├── Ticker.jsx/css     # Scrolling spec marquee
+│       ├── Features.jsx/css   # Why Phase (pixel-art icons)
+│       ├── PixelIcon.jsx      # 7x7 pixel-grid icons
+│       ├── Products.jsx/css   # Lunar Drive V2.1, Phalanx Drive, Atlas teaser
+│       ├── ModelViewer.jsx/css# Lazy three.js GLB viewer (Draco)
+│       ├── About.jsx/css      # Mission + animated ASCII actuator
+│       ├── AsciiActuator.jsx  # ASCII diagram with spinning rotor
+│       └── Footer.jsx/css     # Footer with a lone glider orbiting forever
+├── index.html                 # HTML entry point
+├── vite.config.js             # Vite configuration
+└── package.json               # Dependencies
 ```
+
+## Regenerating the 3D models
+
+The PCB models are exported from the KiCad projects with `kicad-cli`, then
+Draco-compressed for the web:
+
+```bash
+kicad-cli pcb export glb --force --subst-models --include-tracks --include-pads \
+  --include-silkscreen --include-soldermask --no-dnp \
+  -o public/models/lunar-drive.glb <path-to>/LunarDriveV2/PCB/LunarDrive.kicad_pcb
+
+kicad-cli pcb export glb --force --subst-models --include-tracks --include-pads \
+  --include-silkscreen --include-soldermask --no-dnp \
+  -o public/models/phalanx-drive.glb <path-to>/PhalanxDrive/PCB/PhalanxDrive.kicad_pcb
+
+npx @gltf-transform/cli optimize public/models/lunar-drive.glb public/models/lunar-drive.glb --compress draco --texture-compress false
+npx @gltf-transform/cli optimize public/models/phalanx-drive.glb public/models/phalanx-drive.glb --compress draco --texture-compress false
+```
+
+The Draco decoder in `public/draco/` comes from
+`node_modules/three/examples/jsm/libs/draco/gltf/`.
 
 ## Development
 
@@ -51,7 +84,6 @@ npm run preview
 
 ## Building for Production
 
-### Build the Site
 ```bash
 npm run build
 ```
@@ -60,53 +92,21 @@ This creates a `dist/` folder with all static files ready for deployment.
 
 ## Deploying to cPanel
 
-### Step 1: Build the Project
-```bash
-npm run build
-```
-
-### Step 2: Upload to cPanel
-1. Log into your cPanel account
-2. Open **File Manager**
-3. Navigate to `public_html` (or your desired directory)
-4. Upload ALL contents from the `dist/` folder:
-   - `index.html`
-   - `assets/` folder (contains JS, CSS)
-   - `.htaccess` (important for routing!)
-   - `logo.png`
-   - `eclipse_drive.png`
-   - Any other static files
-
-### Step 3: Verify .htaccess
-Make sure the `.htaccess` file is uploaded. It handles:
-- SPA routing (all routes serve index.html)
-- Security headers
-- Caching for better performance
-- Gzip compression
+1. `npm run build`
+2. Log into cPanel → **File Manager** → `public_html` (or your target directory)
+3. Upload ALL contents of `dist/` (including `.htaccess`, `glider.svg`,
+   `models/`, and `draco/`)
 
 ### Deploying to a Subfolder
 If deploying to `yourdomain.com/phase-robotics/` instead of root:
 
-1. Edit `vite.config.js`:
-```js
-base: '/phase-robotics/',
-```
-
+1. Edit `vite.config.js`: `base: '/phase-robotics/',`
 2. Rebuild: `npm run build`
-
 3. Upload `dist/` contents to the `phase-robotics/` folder in cPanel
-
-## Features
-
-- ⚡ Interactive Three.js pixel art animation
-- 📱 Fully responsive design
-- 🎨 Modern black & white aesthetic
-- 🚀 Optimized production build
-- 🔒 Security headers included
 
 ## Tech Stack
 
 - React 18
-- Three.js
+- Three.js (GLB viewers + Draco decoding)
 - Vite
 - CSS Variables

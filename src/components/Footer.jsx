@@ -1,104 +1,80 @@
+import GliderLogo from './GliderLogo'
+import GameOfLife from './GameOfLife'
 import './Footer.css'
 
-function Footer() {
-  const footerLinks = {
-    products: [
-      { name: 'Eclipse Drive', href: '#products' },
-      { name: 'Documentation', href: '#' },
-      { name: 'Pricing', href: '#' },
+const COLUMNS = [
+  {
+    title: 'Products',
+    links: [
+      { name: 'Lunar Drive V2.1', href: '#products' },
+      { name: 'Phalanx Drive', href: '#products' },
+      { name: 'Atlas Drive — soon', href: '#products' },
     ],
-    company: [
+  },
+  {
+    title: 'Company',
+    links: [
+      { name: 'Why Phase', href: '#why' },
       { name: 'About', href: '#about' },
-      { name: 'Blog', href: '#' },
-      { name: 'Careers', href: '#' },
+      { name: 'Contact', href: 'mailto:phase.robotics@gmail.com' },
     ],
-    resources: [
-      { name: 'GitHub', href: '#' },
-      { name: 'Discord', href: '#' },
-      { name: 'Support', href: '#contact' },
-    ],
-  }
+  },
+]
 
+function Footer() {
   return (
     <footer className="footer" id="contact">
-      <div className="footer__container">
+      {/* A lone glider, orbiting the strip forever */}
+      <div className="footer__life">
+        <GameOfLife
+          cellSize={10}
+          color="rgba(255, 255, 255, 0.4)"
+          density={0}
+          gliders={1}
+          minPopulation={0}
+          stepMs={140}
+        />
+      </div>
+
+      <div className="container">
         <div className="footer__main">
           <div className="footer__brand">
-            <img src="/logo.png" alt="Phase Robotics" className="footer__logo" />
+            <a href="#" className="footer__logo" aria-label="Phase Robotics home">
+              <GliderLogo size={30} />
+              <span className="footer__wordmark">
+                PHASE<span className="footer__wordmark-light">ROBOTICS</span>
+              </span>
+            </a>
             <p className="footer__tagline">
-              Powering the future of robotics, one line of code at a time.
+              Easy-to-use, affordable robotic actuators.
+              Precise, modular, and ready for any robot.
             </p>
-            <div className="footer__contact">
-              <a href="mailto:phase.robotics@gmail.com" className="footer__email">
-                phase.robotics@gmail.com
-              </a>
-            </div>
+            <a href="mailto:phase.robotics@gmail.com" className="footer__email">
+              → phase.robotics@gmail.com
+            </a>
           </div>
 
           <div className="footer__links">
-            <div className="footer__column">
-              <h4 className="footer__column-title">Products</h4>
-              <ul className="footer__list">
-                {footerLinks.products.map((link, index) => (
-                  <li key={index}>
-                    <a href={link.href} className="footer__link">{link.name}</a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="footer__column">
-              <h4 className="footer__column-title">Company</h4>
-              <ul className="footer__list">
-                {footerLinks.company.map((link, index) => (
-                  <li key={index}>
-                    <a href={link.href} className="footer__link">{link.name}</a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="footer__column">
-              <h4 className="footer__column-title">Resources</h4>
-              <ul className="footer__list">
-                {footerLinks.resources.map((link, index) => (
-                  <li key={index}>
-                    <a href={link.href} className="footer__link">{link.name}</a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {COLUMNS.map((column) => (
+              <div key={column.title} className="footer__column">
+                <h4 className="footer__column-title">{column.title}</h4>
+                <ul className="footer__list">
+                  {column.links.map((link) => (
+                    <li key={link.name}>
+                      <a href={link.href} className="footer__link">{link.name}</a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
-        </div>
-
-        <div className="footer__newsletter">
-          <div className="footer__newsletter-content">
-            <h3 className="footer__newsletter-title">Stay Updated</h3>
-            <p className="footer__newsletter-text">
-              Get notified about product launches and updates.
-            </p>
-          </div>
-          <form className="footer__form" onSubmit={(e) => e.preventDefault()}>
-            <input 
-              type="email" 
-              placeholder="your@email.com" 
-              className="footer__input"
-              required
-            />
-            <button type="submit" className="footer__submit">
-              Subscribe
-            </button>
-          </form>
         </div>
 
         <div className="footer__bottom">
           <p className="footer__copyright">
-            © {new Date().getFullYear()} Phase Robotics. All rights reserved.
+            © {new Date().getFullYear()} PHASE ROBOTICS
           </p>
-          <div className="footer__legal">
-            <a href="#" className="footer__legal-link">Privacy</a>
-            <a href="#" className="footer__legal-link">Terms</a>
-          </div>
+          <p className="footer__egg">THE LOGO IS FIVE LIVE CELLS ▚ b3/s23</p>
         </div>
       </div>
     </footer>
@@ -106,8 +82,3 @@ function Footer() {
 }
 
 export default Footer
-
-
-
-
-

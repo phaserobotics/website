@@ -1,98 +1,135 @@
 .hero {
+  position: relative;
+  min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  height: 100vh;
-  min-height: 600px;
-  background: var(--color-bg-dark);
+  align-items: center;
+  overflow: hidden;
+  border-bottom: 1px solid var(--color-ink);
 }
 
-.hero__header {
-  flex-shrink: 0;
-  text-align: center;
-  padding: calc(80px + var(--spacing-xl)) var(--spacing-lg) var(--spacing-lg);
-  background: var(--color-bg-dark);
+.hero__life {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+  max-width: 1240px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 8rem 2rem 6rem;
+  pointer-events: none;
+}
+
+.hero__content a {
+  pointer-events: auto;
+}
+
+.hero__kicker {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  color: var(--color-muted);
+  margin-bottom: 1.5rem;
+  background: var(--color-paper);
+  padding: 0.2rem 0.4rem;
 }
 
 .hero__title {
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-size: clamp(2.4rem, 6vw, 4.6rem);
   font-weight: 700;
-  line-height: 1.1;
-  color: var(--color-text-light);
-  margin-bottom: var(--spacing-sm);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
+  max-width: 16ch;
+}
+
+.hero__title .cursor-blink {
+  margin-left: 0.12em;
+  width: 0.5em;
+  height: 0.85em;
 }
 
 .hero__subtitle {
-  font-size: clamp(1rem, 2vw, 1.25rem);
-  color: var(--color-text-muted);
-  max-width: 600px;
-  margin: 0 auto var(--spacing-lg);
-  font-family: var(--font-mono);
+  max-width: 520px;
+  margin-top: 1.6rem;
+  font-size: 1.05rem;
+  color: var(--color-muted);
+  background: var(--color-paper);
 }
 
 .hero__actions {
   display: flex;
-  gap: var(--spacing-sm);
-  justify-content: center;
   flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2.4rem;
 }
 
-.hero__btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem 2rem;
-  font-size: 0.95rem;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  transition: all var(--transition-fast);
+.hero__stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 3rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  color: var(--color-muted);
 }
 
-.hero__btn--primary {
-  background: var(--color-text-light);
-  color: var(--color-text);
-  border: 1px solid var(--color-text-light);
+.hero__stats span {
+  border-left: 2px solid var(--color-ink);
+  padding-left: 0.7rem;
+  background: var(--color-paper);
 }
 
-.hero__btn--primary:hover {
-  background: transparent;
-  color: var(--color-text-light);
+.hero__hint {
+  position: absolute;
+  left: 2rem;
+  bottom: 1.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  color: var(--color-muted);
+  z-index: 1;
+  pointer-events: none;
 }
 
-.hero__btn--secondary {
-  background: transparent;
-  color: var(--color-text-light);
-  border: 1px solid var(--color-border-dark);
+.hero__scroll {
+  position: absolute;
+  right: 2rem;
+  bottom: 1.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  color: var(--color-ink);
+  z-index: 1;
+  animation: hero-bob 2s ease-in-out infinite;
+  pointer-events: none;
 }
 
-.hero__btn--secondary:hover {
-  border-color: var(--color-text-light);
+@keyframes hero-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
 }
 
-.hero__animation {
-  flex: 1;
-  position: relative;
-  min-height: 250px;
-  width: 100%;
+@media (prefers-reduced-motion: reduce) {
+  .hero__scroll {
+    animation: none;
+  }
 }
 
 @media (max-width: 768px) {
-  .hero__header {
-    padding: calc(70px + var(--spacing-md)) var(--spacing-sm) var(--spacing-md);
+  .hero__content {
+    padding: 7rem 1.25rem 5rem;
   }
 
-  .hero__subtitle {
-    max-width: none;
+  .hero__hint {
+    display: none;
   }
 
-  .hero__actions {
-    flex-direction: column;
-    width: 100%;
-    padding: 0 var(--spacing-md);
-  }
-
-  .hero__btn {
-    width: 100%;
-    text-align: center;
+  .hero__scroll {
+    right: 1.25rem;
   }
 }

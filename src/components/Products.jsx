@@ -1,72 +1,144 @@
+import ModelViewer from './ModelViewer'
 import './Products.css'
 
-function Products() {
-  const specs = [
-    { label: 'Voltage Range', value: '12-30V DC' },
-    { label: 'Peak Current', value: '15A' },
-    { label: 'Control Modes', value: 'FOC / Torque / Velocity' },
-    { label: 'Communication', value: 'CAN / SPI / I2C' },
-    { label: 'Form Factor', value: '90 x 90 x 12mm' },
-  ]
+const PRODUCTS = [
+  {
+    id: 'lunar',
+    name: 'Lunar Drive',
+    rev: 'V2.1',
+    status: '● CURRENT',
+    tagline:
+      'A sensored FOC servo drive that turns any gimbal BLDC into a smart, daisy-chainable servo. Plug one board into USB and it bridges the whole CAN chain.',
+    model: '/models/lunar-drive.glb',
+    modelLabel: 'LUNAR_DRIVE_V2.1 — LIVE PCB EXPORT',
+    specs: [
+      { label: 'MCU', value: 'ESP32-S3' },
+      { label: 'Encoder', value: 'AS5047P · 14-bit' },
+      { label: 'Gate driver', value: 'DRV8316C' },
+      { label: 'Modes', value: 'Position / Velocity / Torque' },
+      { label: 'Bus', value: 'CAN 500k + USB→CAN bridge' },
+      { label: 'Chain', value: 'Up to 63 nodes' },
+    ],
+    terminal: [
+      '$ python',
+      '>>> import lunardrive as ld',
+      '>>> bus = ld.connect("COM26")',
+      '>>> bus.node(2).position(1.57)',
+      '#2 ok pos',
+    ],
+  },
+  {
+    id: 'phalanx',
+    name: 'Phalanx Drive',
+    rev: 'R1',
+    status: '● IN DEVELOPMENT',
+    tagline:
+      'An integrated cycloidal servo actuator: 11:1 reduction, true phase-current FOC, and FDCAN — all inside a Ø37 mm package.',
+    model: '/models/phalanx-drive.glb',
+    modelLabel: 'PHALANX_DRIVE_R1 — LIVE PCB EXPORT',
+    image: {
+      src: '/phalanx_exploded.png',
+      alt: 'Exploded view of the Phalanx Drive cycloidal actuator',
+      caption: 'EXPLODED VIEW — TWO-DISC CYCLOIDAL REDUCER',
+    },
+    specs: [
+      { label: 'MCU', value: 'STM32G431 · 170 MHz' },
+      { label: 'Gate driver', value: 'DRV8316C' },
+      { label: 'Sensing', value: '3× phase current' },
+      { label: 'Bus', value: 'FDCAN' },
+      { label: 'Reduction', value: '11:1 cycloidal' },
+      { label: 'Envelope', value: 'Ø37 × 32.5 mm' },
+    ],
+  },
+]
 
+function Products() {
   return (
     <section className="products" id="products">
-      <div className="products__container">
-        <div className="products__header">
-          <span className="products__label">// FLAGSHIP PRODUCT</span>
-          <h2 className="products__title">Eclipse Drive V2</h2>
+      <div className="container">
+        <div className="products__header" data-reveal>
+          <span className="section-label">// 02 — PRODUCTS</span>
+          <h2 className="section-title">The actuator family</h2>
           <p className="products__subtitle">
-            A high-performance BLDC motor driver designed for precision robotics. 
-            Field-Oriented Control, compact form factor, and seamless integration.
+            One protocol, one bus, three sizes of muscle. The 3D boards below are
+            exported straight from our KiCad sources — drag them around.
           </p>
         </div>
 
-        <div className="products__content">
-          <div className="products__visual">
-            <div className="products__image-container">
-              <div className="products__image-wrapper">
-                <img 
-                  src="/BlackBackground.png" 
-                  alt="Eclipse Drive V2 Motor Controller" 
-                  className="products__image"
-                />
-              </div>
-              <div className="products__image-label">
-                <span>ECLIPSE_DRIVE_V2</span>
-                <span className="products__status">● IN DEVELOPMENT</span>
-              </div>
+        {PRODUCTS.map((product, index) => (
+          <article
+            key={product.id}
+            className={`product ${index % 2 === 1 ? 'product--flipped' : ''}`}
+            data-reveal
+          >
+            <div className="product__visual">
+              <ModelViewer src={product.model} label={product.modelLabel} />
+              {product.image && (
+                <figure className="product__figure">
+                  <img
+                    src={product.image.src}
+                    alt={product.image.alt}
+                    loading="lazy"
+                    className="product__figure-img"
+                  />
+                  <figcaption className="product__figure-caption">
+                    {product.image.caption}
+                  </figcaption>
+                </figure>
+              )}
             </div>
-          </div>
 
-          <div className="products__details">
-            <div className="products__specs">
-              <h3 className="products__specs-title">Technical Specifications</h3>
-              <dl className="products__specs-list">
-                {specs.map((spec, index) => (
-                  <div key={index} className="products__spec">
-                    <dt className="products__spec-label">{spec.label}</dt>
-                    <dd className="products__spec-value">{spec.value}</dd>
+            <div className="product__details">
+              <div className="product__title-row">
+                <h3 className="product__name">
+                  {product.name} <span className="product__rev">{product.rev}</span>
+                </h3>
+                <span className="product__status">{product.status}</span>
+              </div>
+              <p className="product__tagline">{product.tagline}</p>
+
+              <dl className="product__specs">
+                {product.specs.map((spec) => (
+                  <div key={spec.label} className="product__spec">
+                    <dt>{spec.label}</dt>
+                    <dd>{spec.value}</dd>
                   </div>
                 ))}
               </dl>
-            </div>
 
-            <div className="products__cta">
-              <a href="#contact" className="products__btn products__btn--primary">
-                Request Early Access
-              </a>
-              <a href="#" className="products__btn products__btn--secondary">
-                View Documentation →
+              {product.terminal && (
+                <pre className="product__terminal" aria-label="Python quick start">
+                  {product.terminal.join('\n')}
+                </pre>
+              )}
+
+              <a href="mailto:phase.robotics@gmail.com" className="btn btn--primary product__cta">
+                Request early access
               </a>
             </div>
+          </article>
+        ))}
+
+        <article className="atlas" data-reveal>
+          <div className="atlas__body">
+            <span className="atlas__status">○ COMING SOON</span>
+            <h3 className="atlas__name">Atlas Drive</h3>
+            <p className="atlas__tagline">
+              The big sibling. Same bus, same protocol, same tooling —
+              built for joints that lift things that matter.
+            </p>
           </div>
-        </div>
+          <div className="atlas__spec">
+            <span className="atlas__number">60&nbsp;A</span>
+            <span className="atlas__number-label">PEAK CURRENT CAPABILITY</span>
+          </div>
+          <span className="atlas__cursor" aria-hidden="true">
+            AWAITING SILICON<span className="cursor-blink"></span>
+          </span>
+        </article>
       </div>
     </section>
   )
 }
 
 export default Products
-
-
-
