@@ -33,7 +33,7 @@ const PRODUCTS = [
     rev: 'R1',
     status: '● IN DEVELOPMENT',
     tagline:
-      'An integrated cycloidal servo actuator: 11:1 reduction, true phase-current FOC, and FDCAN — all inside a Ø37 mm package.',
+      'An integrated cycloidal servo actuator for dexterous joints: 11:1 reduction, true phase-current FOC, and FDCAN — all inside a Ø37 mm package built for robot hands.',
     model: '/models/phalanx-drive.glb',
     modelLabel: 'PHALANX_DRIVE_R1 — LIVE PCB EXPORT',
     image: {
@@ -60,7 +60,7 @@ function Products() {
           <span className="section-label">// 02 — PRODUCTS</span>
           <h2 className="section-title">The actuator family</h2>
           <p className="products__subtitle">
-            One protocol, one bus, three sizes of muscle. The 3D boards below are
+            One protocol, one bus, from fingertip to wrist. The 3D boards below are
             exported straight from our KiCad sources — drag them around.
           </p>
         </div>
@@ -121,19 +121,19 @@ function Products() {
 
         <article className="atlas" data-reveal>
           <div className="atlas__body">
-            <span className="atlas__status">○ COMING SOON</span>
-            <h3 className="atlas__name">Atlas Drive</h3>
+            <span className="atlas__status">● RUNNING IN-HOUSE</span>
+            <h3 className="atlas__name">Winding Machines</h3>
             <p className="atlas__tagline">
-              The big sibling. Same bus, same protocol, same tooling —
-              built for joints that lift things that matter.
+              We also build the machines that make our actuators. Our motor
+              winding machines are driven by the same drives they help produce.
             </p>
           </div>
           <div className="atlas__spec">
-            <span className="atlas__number">60&nbsp;A</span>
-            <span className="atlas__number-label">PEAK CURRENT CAPABILITY</span>
+            <span className="atlas__number">100%</span>
+            <span className="atlas__number-label">STATORS WOUND ON OUR OWN ACTUATORS</span>
           </div>
           <span className="atlas__cursor" aria-hidden="true">
-            AWAITING SILICON<span className="cursor-blink"></span>
+            MACHINES MAKING MACHINES<span className="cursor-blink"></span>
           </span>
         </article>
       </div>

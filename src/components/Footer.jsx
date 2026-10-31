@@ -8,7 +8,7 @@ const COLUMNS = [
     links: [
       { name: 'Lunar Drive V2.1', href: '#products' },
       { name: 'Phalanx Drive', href: '#products' },
-      { name: 'Atlas Drive — soon', href: '#products' },
+      { name: 'Winding machines', href: '#products' },
     ],
   },
   {
@@ -46,8 +46,8 @@ function Footer() {
               </span>
             </a>
             <p className="footer__tagline">
-              Easy-to-use, affordable robotic actuators.
-              Precise, modular, and ready for any robot.
+              Small precision actuators for robot hands and dexterous
+              manipulators — and the machines that make them.
             </p>
             <a href="mailto:phase.robotics@gmail.com" className="footer__email">
               → phase.robotics@gmail.com

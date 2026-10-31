@@ -30,12 +30,13 @@ function About() {
             <p className="about__text">
               Phase Robotics exists to make those joints boring — in the best way.
               An actuator should be something you order, bolt on, and command.
-              Not a research project.
+              Not a research project. And the hardest joints are the small,
+              crowded ones inside a dexterous hand.
             </p>
             <p className="about__text">
-              We combine embedded systems, power electronics, and open tooling into
-              actuators that are precise enough for serious robots and affordable
-              enough for everyone building one.
+              So that's what we build: small precision actuators for robot hands
+              and manipulators — plus the machines that make them. Our motor
+              winding machines run on the same actuators they produce.
             </p>
             <AsciiActuator />
           </div>

@@ -1,14 +1,14 @@
 import './Ticker.css'
 
 const ITEMS = [
+  'DEXTEROUS MANIPULATION',
   'FIELD-ORIENTED CONTROL',
   'POSITION / VELOCITY / TORQUE',
   'CAN BUS · 63 NODES',
   '14-BIT MAGNETIC ENCODERS',
   '11:1 CYCLOIDAL REDUCTION',
+  'WOUND ON OUR OWN MACHINES',
   'PYTHON IN FIVE LINES',
-  'BROWSER CONTROL STUDIO',
-  '60 A PEAK — ATLAS, SOON',
 ]
 
 // Inverted mono strip that scrolls the spec sheet forever

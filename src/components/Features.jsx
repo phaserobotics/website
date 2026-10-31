@@ -24,7 +24,7 @@ const FEATURES = [
     icon: 'blocks',
     title: 'Modular',
     description:
-      'Every actuator is a node. Daisy-chain up to 63 on a single CAN bus and assemble them into any robot.',
+      'Every actuator is a node. Daisy-chain up to 63 on a single CAN bus — every joint of a hand, from one connector.',
   },
 ]
 
@@ -36,8 +36,9 @@ function Features() {
           <span className="section-label">// 01 — WHY PHASE</span>
           <h2 className="section-title">Motion, without the moat</h2>
           <p className="features__subtitle">
-            Robotic actuators used to mean four-figure price tags and vendor lock-in.
-            We build them the way you'd build them.
+            A dexterous hand needs dozens of small, precise joints — and nobody
+            sells those joints the way you'd want to buy them. So we build them,
+            and the machines that make them.
           </p>
         </div>
 
