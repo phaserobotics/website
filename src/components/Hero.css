@@ -22,6 +22,24 @@
   margin: 0 auto;
   padding: 8rem 2rem 6rem;
   pointer-events: none;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 3rem;
+  align-items: center;
+}
+
+.hero__visual {
+  justify-self: end;
+}
+
+@media (max-width: 1080px) {
+  .hero__content {
+    grid-template-columns: 1fr;
+  }
+
+  .hero__visual {
+    display: none;
+  }
 }
 
 .hero__content a {

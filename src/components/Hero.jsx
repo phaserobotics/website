@@ -1,4 +1,5 @@
 import GameOfLife from './GameOfLife'
+import PhalanxMockup from './PhalanxMockup'
 import './Hero.css'
 
 function Hero() {
@@ -7,6 +8,7 @@ function Hero() {
       <GameOfLife className="hero__life" interactive cellSize={15} />
 
       <div className="hero__content">
+        <div className="hero__copy">
         <span className="hero__kicker">// PRECISION ACTUATORS · FOR DEXTEROUS ROBOTS</span>
         <h1 className="hero__title">
           Precise motion,
@@ -27,6 +29,11 @@ function Hero() {
           <span>Ø37 MM PACKAGE</span>
           <span>63 NODES / BUS</span>
           <span>14-BIT FEEDBACK</span>
+        </div>
+        </div>
+
+        <div className="hero__visual">
+          <PhalanxMockup />
         </div>
       </div>
 
