@@ -21,9 +21,13 @@ function Hero() {
           and dexterous manipulators — and the machines that make them,
           starting with motor winding machines driven by our own drives.
         </p>
-        <div className="hero__actions">
-          <a href="#products" className="btn btn--primary">Explore products</a>
-          <a href="#why" className="btn">Why Phase</a>
+        <div className="hero__launch">
+          <span className="hero__launch-badge">
+            LAUNCHING SOON<span className="cursor-blink" aria-hidden="true"></span>
+          </span>
+          <a href="mailto:phase.robotics@gmail.com" className="hero__launch-mail">
+            → phase.robotics@gmail.com
+          </a>
         </div>
         <div className="hero__stats">
           <span>Ø37 MM PACKAGE</span>

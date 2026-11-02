@@ -2,25 +2,6 @@ import GliderLogo from './GliderLogo'
 import GameOfLife from './GameOfLife'
 import './Footer.css'
 
-const COLUMNS = [
-  {
-    title: 'Products',
-    links: [
-      { name: 'Lunar Drive V2.1', href: '#products' },
-      { name: 'Phalanx Drive', href: '#products' },
-      { name: 'Winding machines', href: '#products' },
-    ],
-  },
-  {
-    title: 'Company',
-    links: [
-      { name: 'Why Phase', href: '#why' },
-      { name: 'About', href: '#about' },
-      { name: 'Contact', href: 'mailto:phase.robotics@gmail.com' },
-    ],
-  },
-]
-
 function Footer() {
   return (
     <footer className="footer" id="contact">
@@ -54,20 +35,9 @@ function Footer() {
             </a>
           </div>
 
-          <div className="footer__links">
-            {COLUMNS.map((column) => (
-              <div key={column.title} className="footer__column">
-                <h4 className="footer__column-title">{column.title}</h4>
-                <ul className="footer__list">
-                  {column.links.map((link) => (
-                    <li key={link.name}>
-                      <a href={link.href} className="footer__link">{link.name}</a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
+          <p className="footer__soon">
+            LAUNCHING SOON<span className="cursor-blink" aria-hidden="true"></span>
+          </p>
         </div>
 
         <div className="footer__bottom">

@@ -1,10 +1,7 @@
 import { useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import Ticker from './components/Ticker'
-import Features from './components/Features'
-import Products from './components/Products'
-import About from './components/About'
+import Lineup from './components/Lineup'
 import Footer from './components/Footer'
 
 function App() {
@@ -31,10 +28,7 @@ function App() {
       <Navbar />
       <main>
         <Hero />
-        <Ticker />
-        <Features />
-        <Products />
-        <About />
+        <Lineup />
       </main>
       <Footer />
     </div>
