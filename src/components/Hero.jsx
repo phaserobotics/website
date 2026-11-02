@@ -27,7 +27,7 @@ function Hero() {
           </span>
         </div>
         <div className="hero__stats">
-          <span>Ø37 MM PACKAGE</span>
+          <span>Ø24 MM PACKAGE</span>
           <span>63 NODES / BUS</span>
           <span>14-BIT FEEDBACK</span>
         </div>

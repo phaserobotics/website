@@ -33,7 +33,7 @@ const PRODUCTS = [
     rev: 'R1',
     status: '● IN DEVELOPMENT',
     tagline:
-      'An integrated cycloidal servo actuator for dexterous joints: 11:1 reduction, true phase-current FOC, and FDCAN — all inside a Ø37 mm package built for robot hands.',
+      'An integrated cycloidal servo actuator for dexterous joints: 11:1 reduction, true phase-current FOC, and FDCAN — all inside a Ø24 mm package built for robot hands.',
     model: '/models/phalanx-drive.glb',
     modelLabel: 'PHALANX_DRIVE_R1 — LIVE PCB EXPORT',
     image: {
@@ -47,7 +47,7 @@ const PRODUCTS = [
       { label: 'Sensing', value: '3× phase current' },
       { label: 'Bus', value: 'FDCAN' },
       { label: 'Reduction', value: '11:1 cycloidal' },
-      { label: 'Envelope', value: 'Ø37 × 32.5 mm' },
+      { label: 'Envelope', value: 'Ø24 × 32.5 mm' },
     ],
   },
 ]

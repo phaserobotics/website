@@ -140,7 +140,7 @@ function PhalanxMockup() {
           <line x1="86" y1="404" x2="214" y2="404" />
           <path d="M86 398 v12 M214 398 v12" />
         </g>
-        <text x="150" y="424" textAnchor="middle" className="pmock__dim">Ø37 MM</text>
+        <text x="150" y="424" textAnchor="middle" className="pmock__dim">Ø24 MM</text>
 
         {/* ── labels ── */}
         <g stroke={muted} strokeWidth="1">

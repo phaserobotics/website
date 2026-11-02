@@ -16,7 +16,7 @@ const ITEMS = [
     name: 'Phalanx Drive',
     status: '● TAKING SHAPE',
     blurb:
-      'An integrated cycloidal actuator for dexterous joints — 11:1 reduction, phase-current FOC, FDCAN, inside Ø37 × 32.5 mm.',
+      'An integrated cycloidal actuator for dexterous joints — 11:1 reduction, phase-current FOC, FDCAN, inside Ø24 × 32.5 mm.',
     image: {
       src: '/phalanx-drive-board.webp',
       alt: 'Phalanx Drive circular PCB',
