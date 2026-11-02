@@ -20,10 +20,6 @@ function Navbar() {
             PHASE<span className="navbar__wordmark-light">ROBOTICS</span>
           </span>
         </a>
-
-        <a href="mailto:phase.robotics@gmail.com" className="navbar__cta">
-          Get in touch
-        </a>
       </div>
     </nav>
   )

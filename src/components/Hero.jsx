@@ -25,9 +25,6 @@ function Hero() {
           <span className="hero__launch-badge">
             LAUNCHING SOON<span className="cursor-blink" aria-hidden="true"></span>
           </span>
-          <a href="mailto:phase.robotics@gmail.com" className="hero__launch-mail">
-            → phase.robotics@gmail.com
-          </a>
         </div>
         <div className="hero__stats">
           <span>Ø37 MM PACKAGE</span>

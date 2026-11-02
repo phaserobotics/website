@@ -48,21 +48,6 @@
   color: rgba(255, 255, 255, 0.72);
 }
 
-.footer__email {
-  display: inline-block;
-  margin-top: 1.4rem;
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  letter-spacing: 0.06em;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-  padding-bottom: 0.15rem;
-  transition: border-color var(--transition-fast);
-}
-
-.footer__email:hover {
-  border-bottom-color: var(--color-paper);
-}
-
 .footer__soon {
   justify-self: end;
   align-self: center;

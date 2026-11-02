@@ -44,24 +44,6 @@
   margin-left: 0.4em;
 }
 
-.navbar__cta {
-  font-family: var(--font-mono);
-  white-space: nowrap;
-  font-size: 0.75rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  padding: 0.55rem 1.1rem;
-  border: 1px solid var(--color-ink);
-  background: var(--color-ink);
-  color: var(--color-paper);
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
-}
-
-.navbar__cta:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 2px 2px 0 var(--color-ink);
-}
-
 @media (max-width: 820px) {
   .navbar__container {
     padding: 0.8rem 1.25rem;

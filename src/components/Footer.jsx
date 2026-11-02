@@ -30,9 +30,6 @@ function Footer() {
               Small precision actuators for robot hands and dexterous
               manipulators — and the machines that make them.
             </p>
-            <a href="mailto:phase.robotics@gmail.com" className="footer__email">
-              → phase.robotics@gmail.com
-            </a>
           </div>
 
           <p className="footer__soon">
@@ -44,7 +41,6 @@ function Footer() {
           <p className="footer__copyright">
             © {new Date().getFullYear()} PHASE ROBOTICS
           </p>
-          <p className="footer__egg">THE LOGO IS FIVE LIVE CELLS ▚ b3/s23</p>
         </div>
       </div>
     </footer>
