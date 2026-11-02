@@ -27,6 +27,10 @@ const ITEMS = [
     status: '● RUNNING IN-HOUSE',
     blurb:
       'The machines that make our actuators. Our motor winding machines are driven by the same drives they produce.',
+    image: {
+      src: '/winding-machine.webp',
+      alt: 'Render of the Phase Robotics motor winding machine',
+    },
   },
 ]
 
