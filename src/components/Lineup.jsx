@@ -7,12 +7,20 @@ const ITEMS = [
     status: '● IN THE LAB',
     blurb:
       'A sensored FOC servo drive that turns any gimbal BLDC into a smart, daisy-chainable servo. USB in, 63-node CAN chain out.',
+    image: {
+      src: '/lunar-drive-motor.jpg',
+      alt: 'Lunar Drive V2.1 board mounted on a BLDC motor, next to a bare stator',
+    },
   },
   {
     name: 'Phalanx Drive',
     status: '● TAKING SHAPE',
     blurb:
       'An integrated cycloidal actuator for dexterous joints — 11:1 reduction, phase-current FOC, FDCAN, inside Ø37 × 32.5 mm.',
+    image: {
+      src: '/phalanx-drive-board.webp',
+      alt: 'Phalanx Drive circular PCB',
+    },
   },
   {
     name: 'Winding Machines',
@@ -31,6 +39,11 @@ function Lineup() {
         <div className="lineup__rows">
           {ITEMS.map((item) => (
             <article key={item.name} className="lineup__row" data-reveal>
+              <div className="lineup__thumb">
+                {item.image && (
+                  <img src={item.image.src} alt={item.image.alt} loading="lazy" />
+                )}
+              </div>
               <h2 className="lineup__name">{item.name}</h2>
               <p className="lineup__blurb">{item.blurb}</p>
               <span className="lineup__status">{item.status}</span>
