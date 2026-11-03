@@ -26,11 +26,6 @@ function Hero() {
             LAUNCHING SOON<span className="cursor-blink" aria-hidden="true"></span>
           </span>
         </div>
-        <div className="hero__stats">
-          <span>Ø24 MM PACKAGE</span>
-          <span>63 NODES / BUS</span>
-          <span>14-BIT FEEDBACK</span>
-        </div>
         </div>
 
         <div className="hero__visual">

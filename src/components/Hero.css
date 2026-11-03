@@ -108,23 +108,6 @@
   height: 0.9em;
 }
 
-.hero__stats {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  margin-top: 3rem;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
-  color: var(--color-muted);
-}
-
-.hero__stats span {
-  border-left: 2px solid var(--color-ink);
-  padding-left: 0.7rem;
-  background: var(--color-paper);
-}
-
 .hero__hint {
   position: absolute;
   left: 2rem;
