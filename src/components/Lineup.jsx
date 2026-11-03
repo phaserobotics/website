@@ -23,13 +23,13 @@ const ITEMS = [
     },
   },
   {
-    name: 'Winding Machines',
+    name: 'Winder-1',
     status: '● RUNNING IN-HOUSE',
     blurb:
-      'The machines that make our actuators. Our motor winding machines are driven by the same drives they produce.',
+      'The machine that makes our actuators. A motor winding machine driven by the same drives it produces.',
     image: {
       src: '/winding-machine.webp',
-      alt: 'Render of the Phase Robotics motor winding machine',
+      alt: 'Render of the Winder-1 motor winding machine',
     },
   },
 ]

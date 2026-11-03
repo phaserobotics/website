@@ -122,7 +122,7 @@ function Products() {
         <article className="atlas" data-reveal>
           <div className="atlas__body">
             <span className="atlas__status">● RUNNING IN-HOUSE</span>
-            <h3 className="atlas__name">Winding Machines</h3>
+            <h3 className="atlas__name">Winder-1</h3>
             <p className="atlas__tagline">
               We also build the machines that make our actuators. Our motor
               winding machines are driven by the same drives they help produce.
