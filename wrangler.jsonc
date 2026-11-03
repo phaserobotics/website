@@ -1,0 +1,13 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "phaserobotics-website",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "single-page-application"
+  },
+  "routes": [
+    { "pattern": "phaserobotics.cc", "custom_domain": true },
+    { "pattern": "www.phaserobotics.cc", "custom_domain": true }
+  ]
+}
