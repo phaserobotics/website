@@ -1,0 +1,18 @@
+{
+  "name": "Phase Robotics",
+  "mode": "monochrome",
+  "colors": {
+    "ink":      { "hex": "#0a0a0a", "use": "primary: text, marks, borders, dark surfaces" },
+    "paper":    { "hex": "#ffffff", "use": "background" },
+    "paperDim": { "hex": "#fafafa", "use": "raised and hover surfaces" },
+    "muted":    { "hex": "#6b6b6b", "use": "secondary text, labels" },
+    "line":     { "hex": "#e4e4e4", "use": "hairline borders, dividers" },
+    "cell":     { "hex": "#ebebeb", "use": "Game of Life cells, decorative pixels" }
+  },
+  "onDark": {
+    "text":      "rgba(255,255,255,0.85)",
+    "secondary": "rgba(255,255,255,0.72)",
+    "label":     "rgba(255,255,255,0.55)",
+    "divider":   "rgba(255,255,255,0.20)"
+  }
+}

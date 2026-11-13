@@ -1,0 +1,9 @@
+/* Phase Robotics — color tokens (matches src/index.css on the website) */
+:root {
+  --phase-ink: #0a0a0a;    /* primary: text, marks, borders, dark surfaces */
+  --phase-paper: #ffffff;  /* background */
+  --phase-paper-dim: #fafafa; /* raised/hover surfaces */
+  --phase-muted: #6b6b6b;  /* secondary text, labels */
+  --phase-line: #e4e4e4;   /* hairline borders, dividers */
+  --phase-cell: #ebebeb;   /* Game of Life cells, decorative pixels */
+}
