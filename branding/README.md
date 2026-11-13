@@ -9,13 +9,21 @@ which is also the pitch for the actuators.
 ## The mark
 
 The glider is drawn on a 3×3 Life grid in its canonical orientation (heading
-down-right). Construction, on a 32-unit box:
+down-right), with its five cells fused into one soft shape. Construction, on a
+32-unit box:
 
 ```
-grid pitch 10 · cell 8 · margin 2        . X .
+gapless grid, pitch 10 · margin 1        . X .
 cells (col,row):                         . . X
 (1,0) (2,1) (0,2) (1,2) (2,2)            X X X
+outer corners: radius 3 · inner corners: fillet 3
 ```
+
+Orthogonal neighbours merge outright. The top cell, which only touches the rest
+at a corner, joins through a filleted neck: the outline passes through that
+touch point twice, and both passes get the same 3-unit fillet. The canonical
+path is `MARK_D` in `tools/mark.mjs`; the website's `GliderLogo.jsx` and
+`public/glider.svg` embed the same path.
 
 **Rules**
 
@@ -25,7 +33,8 @@ cells (col,row):                         . . X
   or container shapes.
 - Clear space: at least one grid cell (10 units) on every side.
 - Minimum sizes: 16 px (mark), 110 px wide (lockup).
-- Cells are always square, gap always 2/10 of the pitch. Don't round corners.
+- Use the path as drawn. Don't redraw it from squares, change the radii, or
+  separate the cells.
 
 ## Wordmark & lockup
 
@@ -88,8 +97,16 @@ branding/
 │   ├── avatar-{white-on-black,black-on-white}-1024.png
 │   ├── banner-x-1500x500.png · banner-linkedin-1584x396.png
 │   └── og-image-1200x630.png                for <meta property="og:image">
-└── tools/generate.mjs                       regenerates everything above
+├── explorations/rounded-glider/             logo variants A–D (A was adopted)
+└── tools/
+    ├── mark.mjs                             canonical logo path (MARK_D)
+    ├── generate.mjs                         regenerates everything above
+    └── rounded-glider.mjs                   regenerates the explorations
 ```
+
+The banners put the tagline top-left over the Life grid, with a dark gradient
+from the right revealing a tone-on-tone grid of stator silhouettes. The
+bottom-left stays empty because X and LinkedIn put the profile picture there.
 
 ## Regenerating
 
@@ -100,6 +117,13 @@ npm i --no-save puppeteer-core png-to-ico
 node branding/tools/generate.mjs
 ```
 
-The SVG sources under `logo/svg/` (except the lockups) are hand-written and
-canonical; `tools/generate.mjs` derives every PNG, the favicon set, and the
-font-embedded lockup SVGs from the same geometry.
+Everything is derived from `tools/mark.mjs`: `generate.mjs` writes the mark
+SVGs, the font-embedded lockups, every PNG, and the favicon set. If you change
+the mark, also paste the new `MARK_D` into `src/components/GliderLogo.jsx` and
+`public/glider.svg`.
+
+`--only=<name>` re-renders just the matching files, for example
+`node branding/tools/generate.mjs --only=banner`. If Google Fonts is
+unreachable, JetBrains Mono falls back to the copy embedded in the lockup, but
+Sora and Inter (used by the OG image and type specimen) won't load, so render
+those only when online.

@@ -12,6 +12,7 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 import puppeteer from 'puppeteer-core'
 import pngToIco from 'png-to-ico'
+import { MARK_D } from './mark.mjs'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 // node generate.mjs [output-dir] [--only=<substring>]  e.g. --only=banner
@@ -26,14 +27,12 @@ const PAPER = '#ffffff'
 const MUTED = '#6b6b6b'
 const CELL = '#ebebeb'
 
-// Canonical glider: 3x3 Life grid, 10-unit pitch, 8-unit cells, 2-unit margin,
-// in a 32x32 box. Same geometry as src/components/GliderLogo.jsx.
+// Life glider (for the Game of Life background fields).
 const GLIDER = [[1, 0], [2, 1], [0, 2], [1, 2], [2, 2]]
 
-function gliderRects(color, scale = 1, offX = 0, offY = 0) {
-  return GLIDER.map(([c, r]) =>
-    `<rect x="${(offX + 2 + c * 10) * scale}" y="${(offY + 2 + r * 10) * scale}" width="${8 * scale}" height="${8 * scale}" fill="${color}"/>`
-  ).join('')
+// The logo mark (rounded, fused glider) in a 32x32 box. See mark.mjs.
+function gliderRects(color) {
+  return `<path d="${MARK_D}" fill="${color}"/>`
 }
 
 // ---------------------------------------------------------------- fonts
@@ -108,7 +107,7 @@ function lifeField(w, h, cell = 14, density = 0.05, seed = 7) {
   let rects = ''
   for (const key of on) {
     const [c, r] = key.split(',').map(Number)
-    rects += `<rect x="${c * cell + 1}" y="${r * cell + 1}" width="${cell - 2}" height="${cell - 2}" fill="${CELL}"/>`
+    rects += `<rect x="${c * cell + 1}" y="${r * cell + 1}" width="${cell - 2}" height="${cell - 2}" rx="${(cell * 0.3).toFixed(1)}" fill="${CELL}"/>`
   }
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" style="position:absolute;inset:0">${rects}</svg>`
 }
@@ -149,6 +148,13 @@ const MONO_FACE = `<style>
 const lockupBlack = lockupSvg(INK, MUTED, fonts)
 const lockupWhite = lockupSvg(PAPER, 'rgba(255,255,255,0.55)', fonts)
 if (!ONLY) {
+  const plain = (bg, fg) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">\n${bg ? `  <rect width="32" height="32" fill="${bg}"/>\n` : ''}  <path fill="${fg}" d="${MARK_D}"/>\n</svg>\n`
+  writeFileSync(path.join(OUT, 'logo/svg/glider-black.svg'), plain(null, INK))
+  writeFileSync(path.join(OUT, 'logo/svg/glider-white.svg'), plain(null, PAPER))
+  writeFileSync(path.join(OUT, 'logo/svg/glider-tile-black-on-white.svg'), plain(PAPER, INK))
+  writeFileSync(path.join(OUT, 'logo/svg/glider-tile-white-on-black.svg'), plain(INK, PAPER))
+  writeFileSync(path.join(OUT, 'favicon/favicon.svg'), plain('#ffffff', '#000000'))
+  console.log('ok mark SVGs')
   writeFileSync(path.join(OUT, 'logo/svg/lockup-black.svg'), lockupBlack)
   writeFileSync(path.join(OUT, 'logo/svg/lockup-white.svg'), lockupWhite)
   console.log('ok lockup SVGs (fonts embedded)')
@@ -184,19 +190,84 @@ await render(avatar(INK, PAPER), 1024, 1024, 'social/avatar-white-on-black-1024.
 await render(avatar(PAPER, INK), 1024, 1024, 'social/avatar-black-on-white-1024.png')
 
 // --- social: banners
-function banner(w, h, lockupWidth) {
+// Simple stator silhouette (12 T-teeth + yoke, bore cut out) for the pattern.
+// Use with fill-rule="evenodd".
+function statorIcon(cx, cy, R) {
+  const SLOTS = 12
+  const Rt0 = R * 0.8
+  const Ry = R * 0.55
+  const Rb = R * 0.3
+  const s = R * 0.11
+  const tipA = (Math.PI / SLOTS) * 0.84
+  const P = (r, a) => [cx + r * Math.cos(a), cy + r * Math.sin(a)]
+  const O = (r, a, o) => [cx + r * Math.cos(a) - o * Math.sin(a), cy + r * Math.sin(a) + o * Math.cos(a)]
+  const f = ([x, y]) => `${x.toFixed(2)} ${y.toFixed(2)}`
+  const rJoin = Math.sqrt(Ry * Ry - s * s)
+  let d = ''
+  for (let i = 0; i < SLOTS; i++) {
+    const a = (i / SLOTS) * 2 * Math.PI
+    const next = ((i + 1) / SLOTS) * 2 * Math.PI
+    d += `${i === 0 ? 'M' : 'L'}${f(O(rJoin, a, -s))}`
+      + `L${f(O(Rt0, a, -s))}L${f(P(Rt0, a - tipA))}L${f(P(R, a - tipA))}`
+      + `A${R} ${R} 0 0 1 ${f(P(R, a + tipA))}L${f(P(Rt0, a + tipA))}`
+      + `L${f(O(Rt0, a, s))}L${f(O(rJoin, a, s))}`
+      + `A${Ry} ${Ry} 0 0 1 ${f(O(rJoin, next, -s))}`
+  }
+  d += `ZM${cx + Rb} ${cy}A${Rb} ${Rb} 0 1 0 ${cx - Rb} ${cy}A${Rb} ${Rb} 0 1 0 ${cx + Rb} ${cy}Z`
+  return d
+}
+
+// Tagline top-left over the Life grid; from the right, a dark gradient with
+// a tone-on-tone grid of stator silhouettes fading in.
+function banner(w, h) {
+  const CELL = 14
+  const pad = Math.round(h * 0.11)
+  const mono = `font-family:'JetBrains Mono',monospace`
+
+  // Pattern grid, anchored so whole tiles end flush at the right edge.
+  const tile = Math.round(h * 0.19)
+  const R = tile * 0.37
+  const tileX = w % tile
+
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" style="position:absolute;inset:0">
+    <defs>
+      <linearGradient id="shade" x1="0" x2="1" y1="0" y2="0">
+        <stop offset="0.36" stop-color="${INK}" stop-opacity="0"/>
+        <stop offset="0.55" stop-color="${INK}" stop-opacity="0.45"/>
+        <stop offset="0.75" stop-color="${INK}" stop-opacity="0.82"/>
+        <stop offset="1" stop-color="${INK}" stop-opacity="1"/>
+      </linearGradient>
+      <linearGradient id="reveal" x1="0" x2="1" y1="0" y2="0">
+        <stop offset="0.42" stop-color="#000"/>
+        <stop offset="0.8" stop-color="#fff"/>
+      </linearGradient>
+      <linearGradient id="hide" x1="0" x2="1" y1="0" y2="0">
+        <stop offset="0.3" stop-color="#fff"/>
+        <stop offset="0.55" stop-color="#000"/>
+      </linearGradient>
+      <mask id="reveal-mask"><rect width="${w}" height="${h}" fill="url(#reveal)"/></mask>
+      <mask id="hide-mask"><rect width="${w}" height="${h}" fill="url(#hide)"/></mask>
+      <pattern id="stators" patternUnits="userSpaceOnUse" x="${tileX}" y="${(h % tile) / 2}" width="${tile}" height="${tile}">
+        <path d="${statorIcon(tile / 2, tile / 2, R)}" fill="${PAPER}" fill-opacity="0.14" fill-rule="evenodd"/>
+      </pattern>
+    </defs>
+    <g mask="url(#hide-mask)">${lifeField(w, h, CELL, 0.04, 11)}</g>
+    <rect width="${w}" height="${h}" fill="url(#shade)"/>
+    <rect width="${w}" height="${h}" fill="url(#stators)" mask="url(#reveal-mask)"/>
+  </svg>`
+
+  const tagSize = Math.round(h * 0.072)
   return bare(`${MONO_FACE}
   <div style="position:relative;width:${w}px;height:${h}px;background:${PAPER};overflow:hidden">
-    ${lifeField(w, h, 14, 0.045, 11)}
-    <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:${Math.round(h * 0.07)}px">
-      <div style="background:${PAPER};padding:8px 14px">${lockupBlack.replace('<svg ', `<svg width="${lockupWidth}" style="display:block" `)}</div>
-      <div style="background:${PAPER};padding:4px 10px;font-family:'JetBrains Mono',monospace;font-size:${Math.round(h * 0.044)}px;letter-spacing:0.22em;color:${MUTED}">PRECISION ACTUATORS MADE IN AMERICA</div>
+    ${svg}
+    <div style="position:absolute;left:${pad}px;top:${pad}px;${mono};font-weight:700;font-size:${tagSize}px;line-height:1.18;letter-spacing:0.06em">
+      <div style="display:inline-block;background:${PAPER};border-radius:8px;padding:0 8px;color:${INK}">PRECISION ACTUATORS</div><br>
+      <div style="display:inline-block;background:${PAPER};border-radius:8px;padding:0 8px;color:${MUTED}">MADE IN AMERICA</div>
     </div>
-    <div style="position:absolute;left:0;right:0;bottom:0;height:6px;background:${INK}"></div>
   </div>`, PAPER)
 }
-await render(banner(1500, 500, 620), 1500, 500, 'social/banner-x-1500x500.png')
-await render(banner(1584, 396, 560), 1584, 396, 'social/banner-linkedin-1584x396.png')
+await render(banner(1500, 500), 1500, 500, 'social/banner-x-1500x500.png')
+await render(banner(1584, 396), 1584, 396, 'social/banner-linkedin-1584x396.png')
 
 // --- social: OG image
 const og = bare(`${FONTS_LINK}
