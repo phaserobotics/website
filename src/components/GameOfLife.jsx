@@ -124,16 +124,42 @@ function GameOfLife({
       }
     }
 
+    // Cells are drawn like the logo: rounded squares that fuse with their
+    // orthogonal neighbours (a bridge fills the gap and squares off the
+    // touching corners). Canvas ops are batched into one path, one fill.
+    const gap = Math.max(1, cellSize * 0.1)
+    const radius = cellSize * 0.3
+    const hasRoundRect = typeof ctx.roundRect === 'function'
+
     function draw() {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
       ctx.fillStyle = color
+      ctx.beginPath()
+      const size = cellSize - 2 * gap
       for (let r = 0; r < rows; r++) {
         for (let c = 0; c < cols; c++) {
-          if (grid[r * cols + c]) {
-            ctx.fillRect(c * cellSize + 1, r * cellSize + 1, cellSize - 2, cellSize - 2)
+          if (!grid[r * cols + c]) continue
+          const x = c * cellSize + gap
+          const y = r * cellSize + gap
+          if (hasRoundRect) ctx.roundRect(x, y, size, size, radius)
+          else ctx.rect(x, y, size, size)
+          // Bridge to the right / lower neighbour (no wrap across edges)
+          if (c + 1 < cols && grid[r * cols + c + 1]) {
+            ctx.rect(x + size - radius, y, 2 * gap + 2 * radius, size)
+          }
+          if (r + 1 < rows && grid[(r + 1) * cols + c]) {
+            ctx.rect(x, y + size - radius, size, 2 * gap + 2 * radius)
+          }
+          // Fill the pinhole at the centre of a solid 2x2 block
+          if (
+            c + 1 < cols && r + 1 < rows &&
+            grid[r * cols + c + 1] && grid[(r + 1) * cols + c] && grid[(r + 1) * cols + c + 1]
+          ) {
+            ctx.rect(x + size - radius, y + size - radius, 2 * gap + 2 * radius, 2 * gap + 2 * radius)
           }
         }
       }
+      ctx.fill('nonzero')
     }
 
     function loop(time) {

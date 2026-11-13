@@ -1,12 +1,13 @@
 .footer {
   background: var(--color-ink);
   color: var(--color-paper);
-  border-top: 1px solid var(--color-ink);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  overflow: hidden;
 }
 
 .footer__life {
-  height: 70px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  height: 76px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
   overflow: hidden;
 }
 
@@ -51,22 +52,31 @@
 .footer__soon {
   justify-self: end;
   align-self: center;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  padding: 0.75rem 1.3rem;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: var(--radius-pill);
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   letter-spacing: 0.22em;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.footer__soon .dot--pulse {
+  animation-name: dot-pulse-light;
+}
+
+@keyframes dot-pulse-light {
+  0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
+  70%, 100% { box-shadow: 0 0 0 7px rgba(255, 255, 255, 0); }
 }
 
 .footer__soon .cursor-blink {
-  margin-left: 0.4em;
+  margin-left: -0.2em;
   width: 0.5em;
   height: 0.9em;
-}
-
-@media (max-width: 768px) {
-  .footer__soon {
-    justify-self: start;
-  }
 }
 
 .footer__bottom {
@@ -75,7 +85,7 @@
   flex-wrap: wrap;
   gap: 0.8rem;
   padding: 1.4rem 0 1.8rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
   font-family: var(--font-mono);
   font-size: 0.68rem;
   letter-spacing: 0.12em;
@@ -83,8 +93,16 @@
 }
 
 @media (max-width: 768px) {
+  .footer {
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  }
+
   .footer__main {
     grid-template-columns: 1fr;
     padding: 3rem 0 2rem;
+  }
+
+  .footer__soon {
+    justify-self: start;
   }
 }

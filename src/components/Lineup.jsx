@@ -4,7 +4,7 @@ import './Lineup.css'
 const ITEMS = [
   {
     name: 'Lunar Drive',
-    status: '● IN THE LAB',
+    status: 'IN THE LAB',
     blurb:
       'A sensored FOC servo drive that turns any gimbal BLDC into a smart, daisy-chainable servo. USB in, 63-node CAN chain out.',
     image: {
@@ -14,7 +14,7 @@ const ITEMS = [
   },
   {
     name: 'Phalanx Drive',
-    status: '● TAKING SHAPE',
+    status: 'TAKING SHAPE',
     blurb:
       'An integrated cycloidal actuator for dexterous joints — 11:1 reduction, phase-current FOC, FDCAN, inside Ø24 × 32.5 mm.',
     image: {
@@ -24,7 +24,7 @@ const ITEMS = [
   },
   {
     name: 'Winder-1',
-    status: '● RUNNING IN-HOUSE',
+    status: 'RUNNING IN-HOUSE',
     blurb:
       'The machine that makes our actuators. A motor winding machine driven by the same drives it produces.',
     image: {
@@ -50,12 +50,16 @@ function Lineup() {
               </div>
               <h2 className="lineup__name">{item.name}</h2>
               <p className="lineup__blurb">{item.blurb}</p>
-              <span className="lineup__status">{item.status}</span>
+              <span className="chip lineup__status">
+                <span className="dot" aria-hidden="true"></span>
+                {item.status}
+              </span>
             </article>
           ))}
         </div>
 
         <p className="lineup__soon" data-reveal>
+          <span className="dot dot--pulse" aria-hidden="true"></span>
           LAUNCHING SOON<span className="cursor-blink" aria-hidden="true"></span>
         </p>
       </div>

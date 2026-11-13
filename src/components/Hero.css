@@ -4,7 +4,6 @@
   display: flex;
   align-items: center;
   overflow: hidden;
-  border-bottom: 1px solid var(--color-ink);
 }
 
 .hero__life {
@@ -46,15 +45,11 @@
   pointer-events: auto;
 }
 
-.hero__kicker {
-  display: inline-block;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.18em;
-  color: var(--color-muted);
+/* .chip.* selectors: index.css loads after component CSS, so these need
+   the extra class to win over the generic .chip rules. */
+.chip.hero__kicker {
   margin-bottom: 1.5rem;
-  background: var(--color-paper);
-  padding: 0.2rem 0.4rem;
+  white-space: normal;
 }
 
 .hero__title {
@@ -64,6 +59,16 @@
   max-width: 16ch;
 }
 
+/* Soft white backing so the Life grid never runs through the text */
+.hero__title-line {
+  background: var(--color-paper);
+  border-radius: var(--radius-md);
+  padding: 0 0.12em;
+  margin-left: -0.12em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
 .hero__title .cursor-blink {
   margin-left: 0.12em;
   width: 0.5em;
@@ -71,18 +76,14 @@
 }
 
 .hero__subtitle {
-  max-width: 520px;
+  max-width: 540px;
   margin-top: 1.6rem;
   font-size: 1.05rem;
   color: var(--color-muted);
   background: var(--color-paper);
-}
-
-.hero__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 2.4rem;
+  border-radius: var(--radius-md);
+  padding: 0.6rem 0.9rem;
+  margin-left: -0.9rem;
 }
 
 .hero__launch {
@@ -90,16 +91,20 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 1.4rem;
-  margin-top: 2.4rem;
+  margin-top: 2.2rem;
 }
 
 .hero__launch-badge {
+  display: inline-flex;
+  align-items: center;
   font-family: var(--font-mono);
   font-size: 0.82rem;
   letter-spacing: 0.18em;
-  padding: 0.85rem 1.4rem;
+  padding: 0.95rem 1.6rem;
   background: var(--color-ink);
   color: var(--color-paper);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-soft);
 }
 
 .hero__launch-badge .cursor-blink {
@@ -108,29 +113,24 @@
   height: 0.9em;
 }
 
-.hero__hint {
+.chip.hero__hint,
+.chip.hero__scroll {
   position: absolute;
-  left: 2rem;
   bottom: 1.4rem;
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.1em;
-  color: var(--color-muted);
   z-index: 1;
   pointer-events: none;
+  font-size: 0.64rem;
 }
 
-.hero__scroll {
-  position: absolute;
+.chip.hero__hint {
+  left: 2rem;
+}
+
+.chip.hero__scroll {
   right: 2rem;
-  bottom: 1.4rem;
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.2em;
   color: var(--color-ink);
-  z-index: 1;
+  border-color: var(--color-ink);
   animation: hero-bob 2s ease-in-out infinite;
-  pointer-events: none;
 }
 
 @keyframes hero-bob {
@@ -139,7 +139,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero__scroll {
+  .chip.hero__scroll {
     animation: none;
   }
 }
@@ -149,11 +149,11 @@
     padding: 7rem 1.25rem 5rem;
   }
 
-  .hero__hint {
+  .chip.hero__hint {
     display: none;
   }
 
-  .hero__scroll {
+  .chip.hero__scroll {
     right: 1.25rem;
   }
 }

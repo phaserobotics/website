@@ -16,16 +16,16 @@ function PhalanxMockup() {
 
       <svg
         className="pmock__svg"
-        viewBox="0 0 380 440"
+        viewBox="0 0 396 440"
         role="img"
         aria-label="Exploded view of the Phalanx actuator: output flange, cycloidal discs, pin ring, BLDC stator, and the integrated Phalanx Drive PCB"
       >
         {/* registration marks */}
         <g stroke={muted} strokeWidth="1" opacity="0.6">
           <path d="M8 14 h12 M14 8 v12" />
-          <path d="M360 14 h12 M366 8 v12" />
+          <path d="M376 14 h12 M382 8 v12" />
           <path d="M8 426 h12 M14 420 v12" />
-          <path d="M360 426 h12 M366 420 v12" />
+          <path d="M376 426 h12 M382 420 v12" />
         </g>
 
         {/* center axis */}
@@ -127,11 +127,11 @@ function PhalanxMockup() {
           <ellipse cx="150" cy="362" rx="64" ry="18" />
           {/* components, slightly skewed for the iso feel */}
           <g transform="translate(150 362) skewX(-24) scale(1 0.5)">
-            <rect x="-26" y="-18" width="22" height="18" fill="#ffffff" />
-            <rect x="6" y="-4" width="16" height="12" fill="#ffffff" />
-            <rect x="-38" y="6" width="9" height="7" fill={cell} />
-            <rect x="14" y="-22" width="9" height="7" fill={cell} />
-            <rect x="-10" y="10" width="7" height="5" fill={cell} />
+            <rect x="-26" y="-18" width="22" height="18" rx="3" fill="#ffffff" />
+            <rect x="6" y="-4" width="16" height="12" rx="3" fill="#ffffff" />
+            <rect x="-38" y="6" width="9" height="7" rx="2" fill={cell} />
+            <rect x="14" y="-22" width="9" height="7" rx="2" fill={cell} />
+            <rect x="-10" y="10" width="7" height="5" rx="1.5" fill={cell} />
           </g>
         </g>
 

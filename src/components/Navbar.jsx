@@ -20,6 +20,10 @@ function Navbar() {
             PHASE<span className="navbar__wordmark-light">ROBOTICS</span>
           </span>
         </a>
+        <span className="chip navbar__status">
+          <span className="dot dot--pulse" aria-hidden="true"></span>
+          LAUNCHING SOON
+        </span>
       </div>
     </nav>
   )

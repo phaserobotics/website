@@ -8,7 +8,7 @@ function Footer() {
       {/* A lone glider, orbiting the strip forever */}
       <div className="footer__life">
         <GameOfLife
-          cellSize={10}
+          cellSize={12}
           color="rgba(255, 255, 255, 0.4)"
           density={0}
           gliders={1}
@@ -33,6 +33,7 @@ function Footer() {
           </div>
 
           <p className="footer__soon">
+            <span className="dot dot--pulse" aria-hidden="true"></span>
             LAUNCHING SOON<span className="cursor-blink" aria-hidden="true"></span>
           </p>
         </div>
