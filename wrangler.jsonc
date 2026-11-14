@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "phaserobotics-website",
+  "name": "phase-robotics-website",
   "compatibility_date": "2026-11-01",
   "workers_dev": false,
   "preview_urls": true,
