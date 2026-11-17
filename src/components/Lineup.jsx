@@ -9,7 +9,7 @@ const ITEMS = [
       'A sensored FOC servo drive that turns any gimbal BLDC into a smart, daisy-chainable servo. USB in, 63-node CAN chain out.',
     image: {
       src: '/lunar-drive-motor.jpg',
-      alt: 'Lunar Drive V2.1 board mounted on a BLDC motor, next to a bare stator',
+      alt: 'Lunar Drive V2.1 FOC servo drive board mounted on a brushless BLDC motor, next to a bare motor stator',
     },
   },
   {
@@ -19,7 +19,7 @@ const ITEMS = [
       'An integrated cycloidal actuator for dexterous joints — 11:1 reduction, phase-current FOC, FDCAN, inside Ø24 × 32.5 mm.',
     image: {
       src: '/phalanx-drive-board.webp',
-      alt: 'Phalanx Drive circular PCB',
+      alt: 'Phalanx Drive circular PCB, the motor controller for a cycloidal robotic actuator',
     },
   },
   {
@@ -29,7 +29,7 @@ const ITEMS = [
       'The machine that makes our actuators. A motor winding machine driven by the same drives it produces.',
     image: {
       src: '/winding-machine.webp',
-      alt: 'Render of the Winder-1 motor winding machine',
+      alt: 'Render of the Winder-1 motor winding machine for brushless motor stators',
     },
   },
 ]
