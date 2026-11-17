@@ -1,0 +1,15 @@
+# Phase Robotics
+
+> Phase Robotics builds small precision robotic actuators for robot hands and dexterous manipulators, and the machines that make them, starting with motor winding machines driven by its own servo drives. Launching soon.
+
+Website: https://phaserobotics.cc/
+
+## Products
+
+- Lunar Drive: a sensored FOC (field-oriented control) servo drive that turns any gimbal BLDC motor into a smart, daisy-chainable servo. USB in, 63-node CAN bus chain out. Status: in the lab.
+- Phalanx Drive: an integrated cycloidal actuator for dexterous robot joints. 11:1 cycloidal reduction, phase-current FOC, FDCAN, in a 24 mm diameter by 32.5 mm package. Status: taking shape.
+- Winder-1: a motor winding machine for brushless motor stators, driven by the same drives it produces. Status: running in-house.
+
+## Topics
+
+Robotics, robotic actuators, precision actuators, BLDC and brushless motors, servo drives, motor controllers, cycloidal reducers, robot hands, dexterous manipulation, motor winding.
