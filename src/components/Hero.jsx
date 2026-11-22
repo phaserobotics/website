@@ -1,35 +1,37 @@
 import GameOfLife from './GameOfLife'
-import GliderLogo from './GliderLogo'
 import PhalanxMockup from './PhalanxMockup'
 import './Hero.css'
+
+// Headline numbers, all from the product specs below
+const STATS = [
+  { value: 'Ø24', unit: 'mm', label: 'Actuator envelope' },
+  { value: '11:1', unit: '', label: 'Cycloidal reduction' },
+  { value: '63', unit: 'nodes', label: 'On one CAN chain' },
+  { value: '14', unit: 'bit', label: 'Magnetic encoder' },
+]
 
 function Hero() {
   return (
     <section className="hero" id="home">
-      <GameOfLife className="hero__life" interactive cellSize={16} />
+      <GameOfLife className="hero__life" interactive cellSize={16} color="#dfe3da" />
 
       <div className="hero__content">
         <div className="hero__copy">
-          <span className="chip hero__kicker">
-            PRECISION ACTUATORS · FOR DEXTEROUS ROBOTS
-          </span>
+          <span className="section-label">Precision actuators / Pre-launch</span>
           <h1 className="hero__title">
-            <span className="hero__title-line">Precise motion,</span>
-            <br />
-            <span className="hero__title-line">
-              sized for robot hands
-              <span className="cursor-blink" aria-hidden="true"></span>
-            </span>
+            Precise motion, sized for <em>robot hands.</em>
           </h1>
           <p className="hero__subtitle">
-            Phase Robotics builds small precision actuators for robot hands
-            and dexterous manipulators — and the machines that make them,
-            starting with motor winding machines driven by our own drives.
+            Small actuators for dexterous robots, and the machines that make
+            them.
           </p>
-          <div className="hero__launch">
-            <span className="hero__launch-badge">
-              LAUNCHING SOON<span className="cursor-blink" aria-hidden="true"></span>
-            </span>
+          <div className="hero__actions">
+            <a href="#products" className="btn btn--primary cut">
+              See the products <span className="btn__arrow" aria-hidden="true">→</span>
+            </a>
+            <a href="#thesis" className="btn cut">
+              For investors <span className="btn__arrow" aria-hidden="true">→</span>
+            </a>
           </div>
         </div>
 
@@ -38,10 +40,17 @@ function Hero() {
         </div>
       </div>
 
-      <span className="chip hero__hint">
-        <GliderLogo size={12} /> CLICK THE GRID — IT'S ALIVE (CONWAY, 1970)
-      </span>
-      <span className="chip hero__scroll">SCROLL ↓</span>
+      <dl className="hero__stats">
+        {STATS.map((stat) => (
+          <div key={stat.label} className="hero__stat">
+            <dd className="hero__stat-value">
+              {stat.value}
+              {stat.unit && <span className="hero__stat-unit">{stat.unit}</span>}
+            </dd>
+            <dt className="hero__stat-label">{stat.label}</dt>
+          </div>
+        ))}
+      </dl>
     </section>
   )
 }

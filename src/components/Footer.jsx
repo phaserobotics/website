@@ -4,12 +4,12 @@ import './Footer.css'
 
 function Footer() {
   return (
-    <footer className="footer" id="contact">
+    <footer className="footer">
       {/* A lone glider, orbiting the strip forever */}
       <div className="footer__life">
         <GameOfLife
           cellSize={12}
-          color="rgba(255, 255, 255, 0.4)"
+          color="rgba(134, 199, 166, 0.55)"
           density={0}
           gliders={1}
           minPopulation={0}
@@ -17,32 +17,23 @@ function Footer() {
         />
       </div>
 
-      <div className="container">
-        <div className="footer__main">
-          <div className="footer__brand">
-            <a href="#" className="footer__logo" aria-label="Phase Robotics home">
-              <GliderLogo size={30} />
-              <span className="footer__wordmark">
-                PHASE<span className="footer__wordmark-light">ROBOTICS</span>
-              </span>
-            </a>
-            <p className="footer__tagline">
-              Small precision actuators for robot hands and dexterous
-              manipulators — and the machines that make them.
-            </p>
-          </div>
+      <div className="container footer__main">
+        <a href="#" className="footer__logo" aria-label="Phase Robotics home">
+          <GliderLogo size={26} />
+          <span className="footer__wordmark">
+            PHASE<span className="footer__wordmark-light">ROBOTICS</span>
+          </span>
+        </a>
 
-          <p className="footer__soon">
-            <span className="dot dot--pulse" aria-hidden="true"></span>
-            LAUNCHING SOON<span className="cursor-blink" aria-hidden="true"></span>
-          </p>
-        </div>
+        <nav className="footer__links" aria-label="Footer">
+          <a href="#products">Products</a>
+          <a href="#thesis">Thesis</a>
+          <a href="#contact">Contact</a>
+        </nav>
 
-        <div className="footer__bottom">
-          <p className="footer__copyright">
-            © {new Date().getFullYear()} PHASE ROBOTICS
-          </p>
-        </div>
+        <p className="footer__copyright">
+          © {new Date().getFullYear()} PHASE ROBOTICS
+        </p>
       </div>
     </footer>
   )

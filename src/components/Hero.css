@@ -1,34 +1,137 @@
 .hero {
   position: relative;
   min-height: 100vh;
+  min-height: 100svh;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  padding-top: var(--nav-height);
   overflow: hidden;
 }
 
+/* The Life grid only lives on the far side of a diagonal, so the copy
+   sits on clean paper without needing a backing plate */
 .hero__life {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
+  -webkit-mask-image: linear-gradient(112deg, transparent 38%, #000 38.1%);
+  mask-image: linear-gradient(112deg, transparent 38%, #000 38.1%);
+}
+
+/* The diagonal itself, drawn as a hairline */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    112deg,
+    transparent calc(38% - 0.5px),
+    var(--color-line) calc(38% - 0.5px),
+    var(--color-line) calc(38% + 0.5px),
+    transparent calc(38% + 0.5px)
+  );
 }
 
 .hero__content {
   position: relative;
   z-index: 1;
-  max-width: 1240px;
+  flex: 1;
+  max-width: 1280px;
   width: 100%;
   margin: 0 auto;
-  padding: 8rem 2rem 6rem;
+  padding: 2.5rem var(--gutter);
   pointer-events: none;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 400px);
   gap: 3rem;
   align-items: center;
 }
 
+.hero__content a {
+  pointer-events: auto;
+}
+
+.hero__title {
+  margin-top: 1.6rem;
+  font-size: clamp(2.9rem, 7.2vw, 6.2rem);
+  letter-spacing: -0.045em;
+  line-height: 0.96;
+  max-width: 11ch;
+}
+
+.hero__title em {
+  font-style: normal;
+  color: var(--color-accent);
+}
+
+.hero__subtitle {
+  max-width: 30ch;
+  margin-top: 1.8rem;
+  font-size: 1.1rem;
+  color: var(--color-muted);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-top: 2.4rem;
+}
+
 .hero__visual {
   justify-self: end;
+  width: 100%;
+}
+
+/* Spec strip along the bottom edge */
+.hero__stats {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--color-ink);
+  background: var(--color-paper);
+  pointer-events: none;
+}
+
+.hero__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.4rem var(--gutter);
+  border-left: 1px solid var(--color-line);
+}
+
+.hero__stat:first-child {
+  border-left: 0;
+}
+
+.hero__stat-value {
+  font-family: var(--font-sans);
+  font-size: clamp(1.7rem, 3.4vw, 2.8rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.hero__stat-unit {
+  margin-left: 0.4em;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.hero__stat-label {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-muted);
 }
 
 @media (max-width: 1080px) {
@@ -39,121 +142,41 @@
   .hero__visual {
     display: none;
   }
-}
 
-.hero__content a {
-  pointer-events: auto;
-}
+  .hero__life {
+    -webkit-mask-image: linear-gradient(112deg, transparent 62%, #000 62.1%);
+    mask-image: linear-gradient(112deg, transparent 62%, #000 62.1%);
+  }
 
-/* .chip.* selectors: index.css loads after component CSS, so these need
-   the extra class to win over the generic .chip rules. */
-.chip.hero__kicker {
-  margin-bottom: 1.5rem;
-  white-space: normal;
-}
-
-.hero__title {
-  font-size: clamp(2.4rem, 6vw, 4.6rem);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  max-width: 16ch;
-}
-
-/* Soft white backing so the Life grid never runs through the text */
-.hero__title-line {
-  background: var(--color-paper);
-  border-radius: var(--radius-md);
-  padding: 0 0.12em;
-  margin-left: -0.12em;
-  -webkit-box-decoration-break: clone;
-  box-decoration-break: clone;
-}
-
-.hero__title .cursor-blink {
-  margin-left: 0.12em;
-  width: 0.5em;
-  height: 0.85em;
-}
-
-.hero__subtitle {
-  max-width: 540px;
-  margin-top: 1.6rem;
-  font-size: 1.05rem;
-  color: var(--color-muted);
-  background: var(--color-paper);
-  border-radius: var(--radius-md);
-  padding: 0.6rem 0.9rem;
-  margin-left: -0.9rem;
-}
-
-.hero__launch {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 1.4rem;
-  margin-top: 2.2rem;
-}
-
-.hero__launch-badge {
-  display: inline-flex;
-  align-items: center;
-  font-family: var(--font-mono);
-  font-size: 0.82rem;
-  letter-spacing: 0.18em;
-  padding: 0.95rem 1.6rem;
-  background: var(--color-ink);
-  color: var(--color-paper);
-  border-radius: var(--radius-pill);
-  box-shadow: var(--shadow-soft);
-}
-
-.hero__launch-badge .cursor-blink {
-  margin-left: 0.5em;
-  width: 0.5em;
-  height: 0.9em;
-}
-
-.chip.hero__hint,
-.chip.hero__scroll {
-  position: absolute;
-  bottom: 1.4rem;
-  z-index: 1;
-  pointer-events: none;
-  font-size: 0.64rem;
-}
-
-.chip.hero__hint {
-  left: 2rem;
-}
-
-.chip.hero__scroll {
-  right: 2rem;
-  color: var(--color-ink);
-  border-color: var(--color-ink);
-  animation: hero-bob 2s ease-in-out infinite;
-}
-
-@keyframes hero-bob {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(5px); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .chip.hero__scroll {
-    animation: none;
+  .hero::before {
+    background: linear-gradient(
+      112deg,
+      transparent calc(62% - 0.5px),
+      var(--color-line) calc(62% - 0.5px),
+      var(--color-line) calc(62% + 0.5px),
+      transparent calc(62% + 0.5px)
+    );
   }
 }
 
 @media (max-width: 768px) {
   .hero__content {
-    padding: 7rem 1.25rem 5rem;
+    padding: 3rem var(--gutter);
   }
 
-  .chip.hero__hint {
-    display: none;
+  .hero__stats {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  .chip.hero__scroll {
-    right: 1.25rem;
+  .hero__stat {
+    padding: 1.1rem var(--gutter);
+  }
+
+  .hero__stat:nth-child(odd) {
+    border-left: 0;
+  }
+
+  .hero__stat:nth-child(n + 3) {
+    border-top: 1px solid var(--color-line);
   }
 }

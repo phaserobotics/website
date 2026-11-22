@@ -1,29 +1,35 @@
-import { useState, useEffect } from 'react'
 import GliderLogo from './GliderLogo'
 import './Navbar.css'
 
+const LINKS = [
+  { href: '#products', label: 'Products' },
+  { href: '#thesis', label: 'Thesis' },
+  { href: '#contact', label: 'Contact' },
+]
+
 function Navbar() {
-  const [scrolled, setScrolled] = useState(false)
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 24)
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
   return (
-    <nav className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
+    <nav className="navbar" aria-label="Primary">
       <div className="navbar__container">
         <a href="#" className="navbar__logo" aria-label="Phase Robotics home">
-          <GliderLogo size={26} />
+          <GliderLogo size={22} />
           <span className="navbar__wordmark">
             PHASE<span className="navbar__wordmark-light">ROBOTICS</span>
           </span>
         </a>
-        <span className="chip navbar__status">
-          <span className="dot dot--pulse" aria-hidden="true"></span>
-          LAUNCHING SOON
-        </span>
+
+        <div className="navbar__links">
+          {LINKS.map((link, index) => (
+            <a key={link.href} href={link.href} className="navbar__link">
+              <span className="navbar__link-index">0{index + 1}</span>
+              {link.label}
+            </a>
+          ))}
+        </div>
+
+        <a href="#contact" className="navbar__cta">
+          Early access <span aria-hidden="true">→</span>
+        </a>
       </div>
     </nav>
   )

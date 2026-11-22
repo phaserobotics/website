@@ -6,9 +6,11 @@ function PhalanxMockup() {
   const ink = 'var(--color-ink)'
   const muted = 'var(--color-muted)'
   const cell = 'var(--color-cell)'
+  const paper = 'var(--color-surface)'
+  const accent = 'var(--color-accent)'
 
   return (
-    <aside className="pmock" aria-label="Phalanx actuator concept mockup">
+    <aside className="pmock cut" aria-label="Phalanx actuator concept mockup">
       <div className="pmock__header">
         <span>PHALANX_ACTUATOR_R1</span>
         <span className="pmock__header-right">CONCEPT MOCKUP</span>
@@ -32,7 +34,7 @@ function PhalanxMockup() {
         <line x1="150" y1="16" x2="150" y2="404" stroke={muted} strokeWidth="1" strokeDasharray="6 5" opacity="0.7" />
 
         {/* ── output flange ── */}
-        <g stroke={ink} strokeWidth="1.5" fill="#ffffff">
+        <g stroke={ink} strokeWidth="1.5" fill={paper}>
           <path d="M86 52 v12 M214 52 v12" />
           <path d="M86 64 a64 18 0 0 0 128 0" fill={cell} stroke={ink} />
           <ellipse cx="150" cy="52" rx="64" ry="18" />
@@ -44,7 +46,7 @@ function PhalanxMockup() {
         </g>
 
         {/* ── cycloidal discs (second one eccentric) ── */}
-        <g stroke={ink} strokeWidth="1.5" fill="#ffffff">
+        <g stroke={ink} strokeWidth="1.5" fill={paper}>
           <path d="M90 112 v6 M210 112 v6" />
           <path d="M90 118 a60 17 0 0 0 120 0" fill={cell} />
           <ellipse cx="150" cy="112" rx="60" ry="17" />
@@ -80,7 +82,7 @@ function PhalanxMockup() {
         </g>
 
         {/* ── pin ring housing ── */}
-        <g stroke={ink} strokeWidth="1.5" fill="#ffffff">
+        <g stroke={ink} strokeWidth="1.5" fill={paper}>
           <path d="M78 196 v10 M222 196 v10" />
           <path d="M78 206 a72 20 0 0 0 144 0" fill={cell} />
           <ellipse cx="150" cy="196" rx="72" ry="20" />
@@ -93,7 +95,7 @@ function PhalanxMockup() {
                 cx={150 + Math.cos(a) * 61}
                 cy={196 + Math.sin(a) * 16.5}
                 r="2.2"
-                fill="#ffffff"
+                fill={paper}
               />
             )
           })}
@@ -109,29 +111,29 @@ function PhalanxMockup() {
             const sag = Math.sqrt(Math.max(0, 1 - dx * dx)) * 19
             return <line key={x} x1={x} y1={252 + sag} x2={x} y2={300 + sag} stroke={muted} strokeWidth="1" />
           })}
-          <ellipse cx="150" cy="252" rx="68" ry="19" fill="#ffffff" />
+          <ellipse cx="150" cy="252" rx="68" ry="19" fill={paper} />
           <ellipse cx="150" cy="252" rx="18" ry="5.5" fill={cell} />
         </g>
 
         {/* ── encoder magnet ── */}
-        <g stroke={ink} strokeWidth="1.5" fill="#ffffff">
+        <g stroke={ink} strokeWidth="1.5" fill={paper}>
           <path d="M139 330 v5 M161 330 v5" />
           <path d="M139 335 a11 3.5 0 0 0 22 0" fill={cell} />
           <ellipse cx="150" cy="330" rx="11" ry="3.5" />
         </g>
 
         {/* ── Phalanx Drive PCB ── */}
-        <g stroke={ink} strokeWidth="1.5" fill="#ffffff">
+        <g stroke={ink} strokeWidth="1.5" fill={paper}>
           <path d="M86 362 v5 M214 362 v5" />
           <path d="M86 367 a64 18 0 0 0 128 0" fill={cell} />
-          <ellipse cx="150" cy="362" rx="64" ry="18" />
+          <ellipse cx="150" cy="362" rx="64" ry="18" fill={accent} />
           {/* components, slightly skewed for the iso feel */}
           <g transform="translate(150 362) skewX(-24) scale(1 0.5)">
-            <rect x="-26" y="-18" width="22" height="18" rx="3" fill="#ffffff" />
-            <rect x="6" y="-4" width="16" height="12" rx="3" fill="#ffffff" />
-            <rect x="-38" y="6" width="9" height="7" rx="2" fill={cell} />
-            <rect x="14" y="-22" width="9" height="7" rx="2" fill={cell} />
-            <rect x="-10" y="10" width="7" height="5" rx="1.5" fill={cell} />
+            <rect x="-26" y="-18" width="22" height="18" fill={paper} />
+            <rect x="6" y="-4" width="16" height="12" fill={paper} />
+            <rect x="-38" y="6" width="9" height="7" fill={cell} />
+            <rect x="14" y="-22" width="9" height="7" fill={cell} />
+            <rect x="-10" y="10" width="7" height="5" fill={cell} />
           </g>
         </g>
 
@@ -158,14 +160,14 @@ function PhalanxMockup() {
           <text x="248" y="202">PIN RING HOUSING</text>
           <text x="248" y="279">BLDC STATOR</text>
           <text x="248" y="334">14-BIT ENCODER</text>
-          <text x="248" y="360">PHALANX DRIVE R1</text>
+          <text x="248" y="360" className="pmock__label-accent">PHALANX DRIVE R1</text>
           <text x="248" y="373">FOC + FDCAN, ON BOARD</text>
         </g>
       </svg>
 
       <div className="pmock__footer">
-        <span>ONE PACKAGE — DRIVE, MOTOR, GEARING</span>
-        <span className="cursor-blink" aria-hidden="true"></span>
+        <span>ONE PACKAGE / DRIVE, MOTOR, GEARING</span>
+        <span>FIG. 00</span>
       </div>
     </aside>
   )

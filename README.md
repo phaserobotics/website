@@ -1,9 +1,11 @@
 # Phase Robotics Website
 
-Minimalist black & white site for Phase Robotics — easy-to-use, affordable,
-precise, modular robotic actuators. Features a live Conway's Game of Life hero
-(the logo is a glider), ASCII/pixel-art accents, and interactive 3D PCB viewers
-exported straight from the KiCad sources.
+Minimalist site for Phase Robotics: small precision actuators for robot hands,
+and the machines that make them. Paper, ink and one dark green accent; cut
+corners, slanted section edges, hairline rules and film grain. The hero runs a
+live Conway's Game of Life (the logo is a glider).
+
+Page order: hero and headline specs, products, investor thesis, contact.
 
 ## Project Structure
 
@@ -22,18 +24,16 @@ website/
 │   ├── App.jsx                # Layout + scroll-reveal observer
 │   ├── index.css              # Global styles & CSS variables
 │   └── components/
-│       ├── Navbar.jsx/css     # Fixed header with glider logo
-│       ├── Hero.jsx/css       # Headline over interactive Game of Life
+│       ├── Navbar.jsx/css     # Fixed instrument-bar header
+│       ├── Hero.jsx/css       # Headline, Life grid behind a diagonal, spec strip
+│       ├── PhalanxMockup.jsx/css # Exploded SVG drawing of the Phalanx actuator
 │       ├── GameOfLife.jsx     # Canvas Life sim (hero bg + footer strip)
 │       ├── GliderLogo.jsx     # Inline SVG glider mark
-│       ├── Ticker.jsx/css     # Scrolling spec marquee
-│       ├── Features.jsx/css   # Why Phase (pixel-art icons)
-│       ├── PixelIcon.jsx      # 7x7 pixel-grid icons
-│       ├── Products.jsx/css   # Lunar Drive V2.1, Phalanx Drive, Atlas teaser
-│       ├── ModelViewer.jsx/css# Lazy three.js GLB viewer (Draco)
-│       ├── About.jsx/css      # Mission + animated ASCII actuator
-│       ├── AsciiActuator.jsx  # ASCII diagram with spinning rotor
-│       └── Footer.jsx/css     # Footer with a lone glider orbiting forever
+│       ├── Products.jsx/css   # Lunar Drive, Phalanx Drive, Winder-1 with specs
+│       ├── Thesis.jsx/css     # Investor thesis on the green slanted section
+│       ├── Contact.jsx/css    # Early access and investor enquiry
+│       ├── Footer.jsx/css     # Footer with a lone glider orbiting forever
+│       └── (unused)           # About, Features, Ticker, ModelViewer, AsciiActuator, PixelIcon
 ├── index.html                 # HTML entry point
 ├── vite.config.js             # Vite configuration
 └── package.json               # Dependencies

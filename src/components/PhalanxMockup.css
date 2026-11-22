@@ -1,11 +1,7 @@
 .pmock {
   width: 100%;
-  max-width: 420px;
-  background: var(--color-paper);
-  border: 1px solid var(--color-ink);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-soft);
+  max-width: 400px;
+  margin-left: auto;
 }
 
 .pmock__header,
@@ -15,30 +11,25 @@
   align-items: center;
   gap: 1rem;
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: 0.6rem;
   letter-spacing: 0.14em;
   color: var(--color-muted);
-  padding: 0.75rem 1.1rem;
+  padding: 0.8rem 1.1rem;
 }
 
 .pmock__header {
   border-bottom: 1px solid var(--color-line);
+  padding-right: 1.6rem;
 }
 
 .pmock__header-right {
-  padding: 0.2rem 0.6rem;
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius-pill);
+  color: var(--color-accent);
 }
 
 .pmock__footer {
   border-top: 1px solid var(--color-line);
   color: var(--color-ink);
-}
-
-.pmock__footer .cursor-blink {
-  width: 0.45em;
-  height: 0.9em;
+  padding-left: 1.6rem;
 }
 
 .pmock__svg {
@@ -48,17 +39,16 @@
   padding: 0.6rem 0.4rem;
 }
 
-/* Softer drawing: rounded joins and caps on every stroke */
-.pmock__svg * {
-  stroke-linejoin: round;
-  stroke-linecap: round;
-}
-
 .pmock__label text {
   font-family: var(--font-mono);
   font-size: 9.5px;
   letter-spacing: 0.08em;
   fill: var(--color-ink);
+}
+
+.pmock__label text.pmock__label-accent {
+  fill: var(--color-accent);
+  font-weight: 500;
 }
 
 .pmock__dim {
