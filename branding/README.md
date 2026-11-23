@@ -67,8 +67,8 @@ in `typography/type-specimen.png`.
 
 ## Voice
 
-Short and plain. Headlines are two-beat statements with full stops: "Small
-actuators. Precise motion." Say what the thing is and stop. Detailed motor
+Short and plain. The headline is "Bringing small, precise actuators to the
+US." Say what the thing is and stop. Detailed motor
 specifications stay off public-facing material.
 
 ---
