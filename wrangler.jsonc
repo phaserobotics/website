@@ -4,6 +4,9 @@
   "compatibility_date": "2026-11-01",
   "workers_dev": false,
   "preview_urls": true,
+  // Required by `wrangler preview` (the branch build command). Assets and
+  // compatibility settings are inherited from the top level.
+  "previews": {},
   "assets": {
     "directory": "./dist",
     "not_found_handling": "404-page"
