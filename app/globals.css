@@ -20,7 +20,7 @@
   --muted: rgba(12, 13, 12, 0.06);
   --accent: rgba(12, 13, 12, 0.06);
   --accent-foreground: #0c0d0c;
-  --popover: rgba(255, 255, 255, 0.9);
+  --popover: rgba(252, 252, 250, 0.98);
   --popover-foreground: #0c0d0c;
   --card: rgba(255, 255, 255, 0.55);
   --card-foreground: #0c0d0c;
@@ -28,6 +28,7 @@
 
   --glass-soft: rgba(255, 255, 255, 0.5);
   --nav-glass: rgba(255, 255, 255, 0.62);
+  --nav-solid: rgba(250, 250, 247, 0.95);
   --card-solid: rgba(255, 255, 255, 0.74);
   --card-base: #e9e7df;
   --card-hover-edge: rgba(12, 13, 12, 0.4);
@@ -59,13 +60,14 @@
   --muted: rgba(255, 255, 255, 0.08);
   --accent: rgba(255, 255, 255, 0.08);
   --accent-foreground: #f2f3f1;
-  --popover: rgba(18, 20, 24, 0.92);
+  --popover: rgba(18, 20, 24, 0.98);
   --popover-foreground: #f2f3f1;
   --card: rgba(255, 255, 255, 0.05);
   --card-foreground: #f2f3f1;
 
   --glass-soft: rgba(255, 255, 255, 0.04);
   --nav-glass: rgba(20, 22, 26, 0.6);
+  --nav-solid: rgba(16, 18, 21, 0.95);
   --card-solid: rgba(22, 24, 28, 0.88);
   --card-base: #0e1014;
   --card-hover-edge: rgba(255, 255, 255, 0.4);
@@ -180,12 +182,18 @@
   z-index: 10;
 }
 .nav-bar {
-  height: 72px;
+  height: 60px;
   margin-inline: max(12px, env(safe-area-inset-left, 0px)) max(12px, env(safe-area-inset-right, 0px));
   border: 1px solid var(--border);
-  background: var(--nav-glass);
-  -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px);
+  background: var(--nav-solid);
+}
+@media (min-width: 1024px) {
+  .nav-bar {
+    height: 72px;
+    background: var(--nav-glass);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+  }
 }
 @keyframes nav-detach {
   to {
@@ -301,19 +309,26 @@
   .dev-card[data-active="true"] .coil ellipse { stroke-dasharray: 340; animation: wind 3s ease-in-out infinite both; }
 }
 
-/* ---------- Phones: sized colour fields, nothing moving behind the cards ---------- */
+/* ---------- Phones and tablets: colour fields drawn as plain gradients ----------
+   A blur filter over a big element is costly to scroll on phones; a radial
+   gradient gives the same soft field for almost nothing. */
+@media (max-width: 1023px) {
+  .blob { filter: none; animation: none; will-change: auto; border-radius: 0; }
+  .blob-a { background: radial-gradient(closest-side, var(--colour-a), transparent); top: 180px; width: 1500px; height: 760px; margin-left: -900px; }
+  .blob-b { background: radial-gradient(closest-side, var(--colour-b), transparent); top: 360px; width: 900px; height: 620px; margin-left: -200px; }
+  .blob-c { background: radial-gradient(closest-side, var(--colour-a), transparent); top: -80px; right: -360px; width: 900px; height: 700px; }
+}
 @media (max-width: 639px) {
-  .blob { filter: blur(64px); animation: none; }
-  .blob-a { top: 250px; width: 120vw; height: 300px; margin-left: -75vw; }
-  .blob-b { top: 400px; width: 80vw; height: 260px; margin-left: -5vw; }
-  .blob-c { top: 60px; right: -35vw; width: 90vw; height: 320px; }
+  .blob-a { top: 150px; width: 170vw; height: 520px; margin-left: -110vw; }
+  .blob-b { top: 300px; width: 120vw; height: 460px; margin-left: -20vw; }
+  .blob-c { top: 0; right: -60vw; width: 130vw; height: 520px; }
 }
 
 /* ---------- Scroll behaviour, where supported. Resting state stays readable. ---------- */
 @keyframes hero-out { to { opacity: 0.15; transform: translateY(-48px) scale(0.98); } }
 @keyframes reveal-up { from { opacity: 0.2; transform: translateY(48px); } to { opacity: 1; transform: none; } }
 @supports (animation-timeline: scroll()) {
-  @media (prefers-reduced-motion: no-preference) {
+  @media (prefers-reduced-motion: no-preference) and (hover: hover) and (min-width: 1024px) {
     .nav-bar { margin-inline: 0; background: transparent; border-color: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; animation: nav-detach linear both; animation-timeline: scroll(); animation-range: 0px 140px; }
     .hero-out { animation: hero-out linear both; animation-timeline: scroll(); animation-range: 0px 520px; }
     .reveal { animation: reveal-up linear both; animation-timeline: view(); animation-range: entry 0% entry 55%; }

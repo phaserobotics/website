@@ -3,7 +3,7 @@ import { CopyEmail, EMAIL } from '@/components/copy-email'
 
 export function SiteFooter() {
   return (
-    <footer id="access" className="relative border-t bg-(--glass-soft) backdrop-blur-xl">
+    <footer id="access" className="relative border-t bg-(--glass-soft) lg:backdrop-blur-xl">
       <div className="reveal gutter flex flex-wrap items-end justify-between gap-10 pt-16 pb-14 sm:pt-24 sm:pb-20">
         <h2 className="max-w-[760px] text-[clamp(36px,5.6vw,80px)] leading-[0.96] font-medium tracking-[-0.045em]">
           Building robots? Get early access.

@@ -59,7 +59,7 @@ export function SiteNav() {
               align="center"
               collisionPadding={12}
               sideOffset={14}
-              className="w-[calc(100vw-24px)] p-2 shadow-[0_24px_48px_-24px_var(--shadow)] backdrop-blur-xl duration-400 sm:hidden"
+              className="w-[calc(100vw-24px)] p-2 shadow-[0_24px_48px_-24px_var(--shadow)] duration-200 sm:hidden"
             >
               {LINKS.map((link) => (
                 <DropdownMenuItem key={link.href} asChild className="h-13 cursor-pointer justify-between border-b px-3 text-[17px]">
