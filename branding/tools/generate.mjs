@@ -99,11 +99,11 @@ function banner(w, h, dark) {
     w, h, dark,
     body: ({ text }) => {
       const pad = Math.round(h * 0.13)
-      const head = Math.round(h * 0.2)
+      const head = Math.round(h * 0.165)
       return `<div style="position:absolute;inset:0;padding:${pad}px ${pad * 1.4}px;display:flex;justify-content:space-between;align-items:flex-start">
         ${brand(text, Math.max(26, Math.round(h * 0.12)))}
         <div style="align-self:center;text-align:right">
-          <div style="font-size:${head}px;letter-spacing:-0.045em;line-height:0.95">Small actuators.<br>Precise motion.</div>
+          <div style="font-size:${head}px;letter-spacing:-0.045em;line-height:0.96">Bringing small, precise<br>actuators to the US.</div>
           <div class="mono" style="margin-top:${head * 0.38}px;font-size:${Math.max(11, Math.round(h * 0.038))}px">PHASEROBOTICS.CC</div>
         </div>
       </div>`
