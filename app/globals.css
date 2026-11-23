@@ -1,0 +1,325 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Phase Robotics tokens. Light on bare :root, dark under .dark (set by next-themes).
+   The names shadcn/ui components expect (background, primary, popover...) map onto them. */
+:root {
+  --background: #f4f3ee;
+  --foreground: #0c0d0c;
+  --muted-foreground: #3f423c;
+  --border: rgba(12, 13, 12, 0.14);
+  --border-strong: rgba(12, 13, 12, 0.2);
+  --input: rgba(12, 13, 12, 0.14);
+  --ring: #1d3fbb;
+  --primary: #ffffff;
+  --primary-foreground: #0c0d0c;
+  --secondary: rgba(255, 255, 255, 0.5);
+  --secondary-foreground: #0c0d0c;
+  --muted: rgba(12, 13, 12, 0.06);
+  --accent: rgba(12, 13, 12, 0.06);
+  --accent-foreground: #0c0d0c;
+  --popover: rgba(255, 255, 255, 0.9);
+  --popover-foreground: #0c0d0c;
+  --card: rgba(255, 255, 255, 0.55);
+  --card-foreground: #0c0d0c;
+  --destructive: #c2410c;
+
+  --glass-soft: rgba(255, 255, 255, 0.5);
+  --nav-glass: rgba(255, 255, 255, 0.62);
+  --card-solid: rgba(255, 255, 255, 0.74);
+  --card-base: #e9e7df;
+  --card-hover-edge: rgba(12, 13, 12, 0.4);
+  --shadow: rgba(12, 13, 12, 0.4);
+  --btn-edge: rgba(12, 13, 12, 0.12);
+  --btn-hover-bg: #0c0d0c;
+  --btn-hover-fg: #ffffff;
+  --btn-hover-edge: #0c0d0c;
+  --colour-a: #1d3fbb;
+  --colour-b: #5fd0c0;
+  --blob-opacity: 0.41;
+  --blob-opacity-low: 0.22;
+  --grain-image: url("/noise-dark.png");
+  --grain-opacity: 0.17;
+  --art-stroke: rgba(255, 255, 255, 0.6);
+  --gutter: clamp(16px, 4vw, 40px);
+  --radius: 0px;
+}
+
+.dark {
+  --background: #08090a;
+  --foreground: #f2f3f1;
+  --muted-foreground: #a8aca6;
+  --border: rgba(255, 255, 255, 0.14);
+  --border-strong: rgba(255, 255, 255, 0.2);
+  --input: rgba(255, 255, 255, 0.14);
+  --secondary: rgba(255, 255, 255, 0.05);
+  --secondary-foreground: #f2f3f1;
+  --muted: rgba(255, 255, 255, 0.08);
+  --accent: rgba(255, 255, 255, 0.08);
+  --accent-foreground: #f2f3f1;
+  --popover: rgba(18, 20, 24, 0.92);
+  --popover-foreground: #f2f3f1;
+  --card: rgba(255, 255, 255, 0.05);
+  --card-foreground: #f2f3f1;
+
+  --glass-soft: rgba(255, 255, 255, 0.04);
+  --nav-glass: rgba(20, 22, 26, 0.6);
+  --card-solid: rgba(22, 24, 28, 0.88);
+  --card-base: #0e1014;
+  --card-hover-edge: rgba(255, 255, 255, 0.4);
+  --shadow: rgba(0, 0, 0, 0.8);
+  --btn-edge: rgba(255, 255, 255, 0.12);
+  --btn-hover-bg: transparent;
+  --btn-hover-fg: #ffffff;
+  --btn-hover-edge: rgba(255, 255, 255, 0.7);
+  --blob-opacity: 0.49;
+  --blob-opacity-low: 0.26;
+  --grain-image: url("/noise-light.png");
+  --grain-opacity: 0.11;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-destructive: var(--destructive);
+  --font-sans: var(--font-geist-sans), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", Menlo, monospace;
+  --animate-accordion-down: accordion-down 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+  --animate-accordion-up: accordion-up 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  @keyframes accordion-down {
+    from { height: 0; opacity: 0; }
+    to { height: var(--radix-accordion-content-height); opacity: 1; }
+  }
+  @keyframes accordion-up {
+    from { height: var(--radix-accordion-content-height); opacity: 1; }
+    to { height: 0; opacity: 0; }
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 96px;
+  }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.4s, color 0.4s;
+  }
+  h1, h2 {
+    text-wrap: balance;
+  }
+}
+
+@utility gutter {
+  padding-left: max(var(--gutter), env(safe-area-inset-left, 0px));
+  padding-right: max(var(--gutter), env(safe-area-inset-right, 0px));
+}
+
+@utility label-mono {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+/* ---------- Texture: blurred colour fields and pre-rendered film grain ---------- */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(110px);
+  will-change: transform;
+}
+.blob-a { left: 50%; top: 360px; width: 1500px; height: 560px; margin-left: -750px; background: var(--colour-a); opacity: var(--blob-opacity); animation: drift-a 16s ease-in-out infinite alternate; }
+.blob-b { left: 50%; top: 500px; width: 760px; height: 420px; margin-left: -120px; background: var(--colour-b); opacity: var(--blob-opacity); animation: drift-b 20s ease-in-out infinite alternate; }
+.blob-c { right: -120px; top: -40px; width: 760px; height: 520px; background: var(--colour-a); opacity: var(--blob-opacity-low); animation: drift-b 20s ease-in-out infinite alternate; }
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  background-image: var(--grain-image);
+  background-size: 60px 60px;
+  opacity: var(--grain-opacity);
+  transform: translateZ(0);
+}
+@keyframes drift-a { to { transform: translate(90px, -30px) scale(1.08); } }
+@keyframes drift-b { to { transform: translate(-140px, 40px) scale(0.92); } }
+
+/* ---------- Nav: floats 12px from the top, turns to glass on scroll ---------- */
+.site-nav {
+  position: sticky;
+  top: calc(env(safe-area-inset-top, 0px) + 12px);
+  z-index: 10;
+}
+.nav-bar {
+  height: 72px;
+  margin-inline: max(12px, env(safe-area-inset-left, 0px)) max(12px, env(safe-area-inset-right, 0px));
+  border: 1px solid var(--border);
+  background: var(--nav-glass);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+}
+@keyframes nav-detach {
+  to {
+    height: 56px;
+    margin: 0 max(12px, env(safe-area-inset-right, 0px)) 0 max(12px, env(safe-area-inset-left, 0px));
+    padding-left: 20px;
+    padding-right: 6px;
+    background: var(--nav-glass);
+    border-color: var(--border);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 12px 32px -16px var(--shadow);
+  }
+}
+
+/* Theme button: only its outline turns and shrinks, the icon stays put */
+.theme-toggle { position: relative; }
+.theme-toggle::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--btn-edge);
+  transition: border-color 0.25s, rotate 0.5s cubic-bezier(0.2, 0.7, 0.2, 1), scale 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.theme-toggle:hover::before { border-color: var(--card-hover-edge); rotate: 45deg; scale: 0.84; }
+
+/* ---------- Hero ---------- */
+.rise { animation: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.rise-2 { animation-delay: 0.12s; }
+.rise-3 { animation-delay: 0.24s; }
+@keyframes rise { from { opacity: 0; transform: translateY(28px); } }
+
+/* ---------- In development cards ---------- */
+.dev-row {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--gutter);
+  scrollbar-width: none;
+  margin-inline: calc(-1 * var(--gutter));
+  padding-inline: var(--gutter);
+  padding-block: 12px 48px;
+}
+.dev-row::-webkit-scrollbar { display: none; }
+.dev-card {
+  flex: 0 0 84%;
+  scroll-snap-align: center;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border: 1px solid var(--border);
+  background: var(--card-solid);
+  transition: translate 0.35s cubic-bezier(0.2, 0.7, 0.2, 1), border-color 0.35s;
+}
+/* Phone: the card in view is the raised one */
+@media (max-width: 639px) {
+  .dev-card[data-active="true"] { translate: 0 -8px; box-shadow: 0 28px 48px -28px var(--shadow); border-color: var(--card-hover-edge); }
+}
+/* Tablet: two cards across, swipe for the third */
+@media (min-width: 640px) {
+  .dev-row { gap: 20px; }
+  .dev-card { flex-basis: calc(46% - 10px); scroll-snap-align: start; }
+}
+/* Desktop: three across, frosted, lift on hover */
+@media (min-width: 1024px) {
+  .dev-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; overflow: visible; margin-inline: 0; padding: 0; }
+  .dev-card {
+    background: var(--card);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    transition: translate 0.35s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.35s, border-color 0.35s;
+  }
+}
+@media (hover: hover) {
+  .dev-card:hover { translate: 0 -8px; box-shadow: 0 28px 48px -28px var(--shadow); border-color: var(--card-hover-edge); }
+  .dev-card:hover .art-lines { scale: 1.06; }
+}
+.card-art { position: relative; height: 200px; overflow: hidden; background-color: var(--card-base); }
+@media (min-width: 640px) { .card-art { height: 260px; } }
+.art-lines { position: absolute; inset: 0; width: 100%; height: 100%; fill: none; stroke: var(--art-stroke); stroke-width: 1; transition: scale 0.6s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.art-grain { position: absolute; inset: 0; background-image: url("/noise-light.png"), url("/noise-dark.png"); background-size: 60px 60px, 44px 44px; opacity: 0.26; }
+.art-1 { background-image: radial-gradient(100% 100% at 15% 10%, #1d3fbb 0%, transparent 62%), radial-gradient(90% 90% at 95% 95%, #8fa8ff 0%, transparent 58%); }
+.art-2 { background-image: radial-gradient(100% 100% at 85% 15%, #5fd0c0 0%, transparent 60%), radial-gradient(100% 100% at 10% 90%, #0d4a4f 0%, transparent 62%); }
+.art-3 { background-image: radial-gradient(110% 110% at 50% 110%, #c2410c 0%, transparent 65%), radial-gradient(70% 70% at 90% 0%, #ffb07a 0%, transparent 60%); }
+
+/* Card drawings: still at rest, moving on hover (mouse) or while in view (touch) */
+.waves { animation: wave-run 3s linear infinite; animation-play-state: paused; will-change: transform; }
+.plate-top, .plate-bot, .plate-lines { transition: translate 0.5s, opacity 0.5s; }
+@keyframes wave-run { to { transform: translateX(-200px); } }
+@keyframes plate-up { to { transform: translateY(-8px); } }
+@keyframes plate-down { to { transform: translateY(8px); } }
+@keyframes wind { 0% { stroke-dashoffset: 340; } 60%, 100% { stroke-dashoffset: 0; } }
+.coil ellipse:nth-child(2) { animation-delay: 0.15s; }
+.coil ellipse:nth-child(3) { animation-delay: 0.3s; }
+.coil ellipse:nth-child(4) { animation-delay: 0.45s; }
+.coil ellipse:nth-child(5) { animation-delay: 0.6s; }
+.coil ellipse:nth-child(6) { animation-delay: 0.75s; }
+.coil ellipse:nth-child(7) { animation-delay: 0.9s; }
+.coil ellipse:nth-child(8) { animation-delay: 1.05s; }
+.coil ellipse:nth-child(9) { animation-delay: 1.2s; }
+@media (hover: hover) {
+  .dev-card:hover .waves { animation-play-state: running; }
+  .dev-card:hover .plate-top { translate: 0 -12px; animation: plate-up 1.2s ease-in-out infinite alternate; }
+  .dev-card:hover .plate-bot { translate: 0 12px; animation: plate-down 1.2s ease-in-out infinite alternate; }
+  .dev-card:hover .plate-lines { opacity: 0.15; }
+  .dev-card:hover .coil ellipse { stroke-dasharray: 340; animation: wind 3s ease-in-out infinite both; }
+}
+@media (hover: none) {
+  .dev-card[data-active="true"] .waves { animation-play-state: running; }
+  .dev-card[data-active="true"] .plate-top { animation: plate-up 1.2s ease-in-out infinite alternate; }
+  .dev-card[data-active="true"] .plate-bot { animation: plate-down 1.2s ease-in-out infinite alternate; }
+  .dev-card[data-active="true"] .coil ellipse { stroke-dasharray: 340; animation: wind 3s ease-in-out infinite both; }
+}
+
+/* ---------- Phones: sized colour fields, nothing moving behind the cards ---------- */
+@media (max-width: 639px) {
+  .blob { filter: blur(64px); animation: none; }
+  .blob-a { top: 250px; width: 120vw; height: 300px; margin-left: -75vw; }
+  .blob-b { top: 400px; width: 80vw; height: 260px; margin-left: -5vw; }
+  .blob-c { top: 60px; right: -35vw; width: 90vw; height: 320px; }
+}
+
+/* ---------- Scroll behaviour, where supported. Resting state stays readable. ---------- */
+@keyframes hero-out { to { opacity: 0.15; transform: translateY(-48px) scale(0.98); } }
+@keyframes reveal-up { from { opacity: 0.2; transform: translateY(48px); } to { opacity: 1; transform: none; } }
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .nav-bar { margin-inline: 0; background: transparent; border-color: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; animation: nav-detach linear both; animation-timeline: scroll(); animation-range: 0px 140px; }
+    .hero-out { animation: hero-out linear both; animation-timeline: scroll(); animation-range: 0px 520px; }
+    .reveal { animation: reveal-up linear both; animation-timeline: view(); animation-range: entry 0% entry 55%; }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  html { scroll-behavior: auto; }
+}
