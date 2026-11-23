@@ -2,9 +2,11 @@
 
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 
-// Each card gets its own abstract drawing. None of them show real hardware.
+// Each card has an abstract drawing on a colour field. The two drives also show
+// a cut-out product photo in front of it (chip markings covered). Winder-1 has
+// no photo, so nothing about the machine is shown.
 const WAVES = (
-  <svg className="art-lines" viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice">
+  <svg className="art-lines" viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
     <path d="M0 130H400" opacity="0.5" />
     <g className="waves">
       <path d="M0 130Q50 10 100 130T200 130T300 130T400 130T500 130T600 130" />
@@ -15,7 +17,7 @@ const WAVES = (
 )
 
 const PLATES = (
-  <svg className="art-lines" viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice">
+  <svg className="art-lines" viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
     <path className="plate-top" d="M200 27L330 75L200 123L70 75Z" />
     <path d="M200 82L330 130L200 178L70 130Z" />
     <path className="plate-bot" d="M200 137L330 185L200 233L70 185Z" />
@@ -24,7 +26,7 @@ const PLATES = (
 )
 
 const COIL = (
-  <svg className="art-lines" viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice">
+  <svg className="art-lines" viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
     <path d="M0 130H70M330 130H400" opacity="0.5" />
     <g className="coil">
       {[92, 119, 146, 173, 200, 227, 254, 281, 308].map((cx) => (
@@ -34,13 +36,21 @@ const COIL = (
   </svg>
 )
 
-const PROJECTS: { name: string; status: string; blurb: string; art: string; drawing: ReactNode }[] = [
+const PROJECTS: {
+  name: string
+  status: string
+  blurb: string
+  art: string
+  drawing: ReactNode
+  photo?: { src: string; alt: string; width: number; height: number }
+}[] = [
   {
     name: 'Lunar Drive',
     status: 'In the lab',
     blurb: 'Servo drive. Turns a brushless motor into a smart, chainable servo.',
     art: 'art-1',
     drawing: WAVES,
+    photo: { src: '/lunar-drive-cutout.webp', alt: 'Lunar Drive board mounted on a brushless motor, beside a bare stator', width: 662, height: 378 },
   },
   {
     name: 'Phalanx Drive',
@@ -48,6 +58,7 @@ const PROJECTS: { name: string; status: string; blurb: string; art: string; draw
     blurb: 'Integrated actuator. Drive, motor and gearing in one package.',
     art: 'art-2',
     drawing: PLATES,
+    photo: { src: '/phalanx-drive-cutout.webp', alt: 'Phalanx Drive circular circuit board', width: 620, height: 615 },
   },
   {
     name: 'Winder-1',
@@ -92,9 +103,20 @@ export function Development() {
       <div ref={rowRef} className="dev-row">
         {PROJECTS.map((project, index) => (
           <article key={project.name} className="dev-card reveal" data-active={active[index]}>
-            <div className={`card-art ${project.art}`} aria-hidden="true">
+            <div className={`card-art ${project.art}`}>
               {project.drawing}
-              <span className="art-grain" />
+              <span className="art-grain" aria-hidden="true" />
+              {project.photo && (
+                <img
+                  className="card-cutout"
+                  src={project.photo.src}
+                  alt={project.photo.alt}
+                  width={project.photo.width}
+                  height={project.photo.height}
+                  loading="lazy"
+                  decoding="async"
+                />
+              )}
             </div>
             <div className="flex flex-col gap-2.5 p-6">
               <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
