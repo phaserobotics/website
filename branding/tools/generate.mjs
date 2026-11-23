@@ -104,6 +104,7 @@ function banner(w, h, dark) {
         ${brand(text, Math.max(26, Math.round(h * 0.12)))}
         <div style="align-self:center;text-align:right">
           <div style="font-size:${head}px;letter-spacing:-0.045em;line-height:0.95">Small actuators.<br>Precise motion.</div>
+          <div class="mono" style="margin-top:${head * 0.38}px;font-size:${Math.max(11, Math.round(h * 0.038))}px">PHASEROBOTICS.CC</div>
         </div>
       </div>`
     },
