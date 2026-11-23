@@ -8,12 +8,12 @@ import './globals.css'
 
 const SITE_URL = 'https://phaserobotics.cc'
 const DESCRIPTION =
-  'Phase Robotics builds small precision actuators for robot hands and dexterous manipulators, and the machines that make them. We are working to build the motor supply chain in the United States.'
+  'Phase Robotics is bringing small, precise actuators to the US, and building actuator supply chains for dexterous manipulators here.'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'Phase Robotics | Small Actuators. Precise Motion.',
+    default: 'Phase Robotics | Bringing Small, Precise Actuators to the US',
     template: '%s | Phase Robotics',
   },
   description: DESCRIPTION,
@@ -50,14 +50,14 @@ export const metadata: Metadata = {
     type: 'website',
     siteName: 'Phase Robotics',
     url: '/',
-    title: 'Phase Robotics | Small Actuators. Precise Motion.',
+    title: 'Phase Robotics | Bringing Small, Precise Actuators to the US',
     description: DESCRIPTION,
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Phase Robotics. Small actuators. Precise motion.' }],
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Phase Robotics. Bringing small, precise actuators to the US.' }],
     locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Phase Robotics | Small Actuators. Precise Motion.',
+    title: 'Phase Robotics | Bringing Small, Precise Actuators to the US',
     description: DESCRIPTION,
     images: ['/og-image.png'],
   },
