@@ -181,15 +181,34 @@
   top: calc(env(safe-area-inset-top, 0px) + 12px);
   z-index: 10;
 }
+/* Default nav (phones, tablets, and browsers without scroll timelines): clear at
+   the top of the page, then its backing fades and settles in as soon as you start
+   to scroll. Only opacity and transform change, so it stays smooth on phones. */
 .nav-bar {
+  position: relative;
   height: 60px;
   margin-inline: max(12px, env(safe-area-inset-left, 0px)) max(12px, env(safe-area-inset-right, 0px));
+}
+.nav-bar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
   border: 1px solid var(--border);
   background: var(--nav-solid);
+  box-shadow: 0 12px 32px -16px var(--shadow);
+  opacity: 0;
+  transform: translateY(-8px) scaleX(1.04);
+  transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+  pointer-events: none;
+}
+.site-nav[data-scrolled="true"] .nav-bar::before {
+  opacity: 1;
+  transform: none;
 }
 @media (min-width: 1024px) {
-  .nav-bar {
-    height: 72px;
+  .nav-bar { height: 72px; }
+  .nav-bar::before {
     background: var(--nav-glass);
     -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
@@ -245,13 +264,26 @@
   display: flex;
   flex-direction: column;
   min-width: 0;
+  position: relative;
   border: 1px solid var(--border);
   background: var(--card-solid);
-  transition: translate 0.35s cubic-bezier(0.2, 0.7, 0.2, 1), border-color 0.35s;
+  transition: translate 0.7s cubic-bezier(0.2, 0.7, 0.2, 1), border-color 0.7s ease;
+}
+/* The raised card's shadow lives on its own layer so it can fade in cheaply */
+.dev-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  box-shadow: 0 28px 48px -28px var(--shadow);
+  opacity: 0;
+  transition: opacity 0.7s ease;
+  pointer-events: none;
 }
 /* Phone: the card in view is the raised one */
 @media (max-width: 639px) {
-  .dev-card[data-active="true"] { translate: 0 -8px; box-shadow: 0 28px 48px -28px var(--shadow); border-color: var(--card-hover-edge); }
+  .dev-card[data-active="true"] { translate: 0 -8px; border-color: var(--card-hover-edge); }
+  .dev-card[data-active="true"]::after { opacity: 1; }
 }
 /* Tablet: two cards across, swipe for the third */
 @media (min-width: 640px) {
@@ -329,7 +361,8 @@
 @keyframes reveal-up { from { opacity: 0.2; transform: translateY(48px); } to { opacity: 1; transform: none; } }
 @supports (animation-timeline: scroll()) {
   @media (prefers-reduced-motion: no-preference) and (hover: hover) and (min-width: 1024px) {
-    .nav-bar { margin-inline: 0; background: transparent; border-color: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; animation: nav-detach linear both; animation-timeline: scroll(); animation-range: 0px 140px; }
+    .nav-bar::before { display: none; }
+    .nav-bar { margin-inline: 0; border: 1px solid transparent; animation: nav-detach linear both; animation-timeline: scroll(); animation-range: 0px 140px; }
     .hero-out { animation: hero-out linear both; animation-timeline: scroll(); animation-range: 0px 520px; }
     .reveal { animation: reveal-up linear both; animation-timeline: view(); animation-range: entry 0% entry 55%; }
   }

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { ArrowDown, ArrowRight, Menu, X } from 'lucide-react'
 import { Brand } from '@/components/glider-logo'
 import { ThemeToggle } from '@/components/theme-toggle'
@@ -19,9 +19,23 @@ const LINKS = [
 
 export function SiteNav() {
   const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const sentinelRef = useRef<HTMLSpanElement>(null)
+
+  // A sliver pinned to the top of the page tells us the moment scrolling starts,
+  // without listening to every scroll event.
+  useEffect(() => {
+    const sentinel = sentinelRef.current
+    if (!sentinel || !('IntersectionObserver' in window)) return
+    const observer = new IntersectionObserver(([entry]) => setScrolled(!entry.isIntersecting))
+    observer.observe(sentinel)
+    return () => observer.disconnect()
+  }, [])
 
   return (
-    <nav className="site-nav" aria-label="Primary">
+    <>
+    <span ref={sentinelRef} aria-hidden="true" className="pointer-events-none absolute top-0 left-0 h-1 w-px" />
+    <nav className="site-nav" aria-label="Primary" data-scrolled={scrolled}>
       <div className="nav-bar gutter flex items-center justify-between gap-4">
         <Brand />
 
@@ -80,5 +94,6 @@ export function SiteNav() {
         </div>
       </div>
     </nav>
+    </>
   )
 }
