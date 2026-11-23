@@ -1,6 +1,6 @@
 # Phase Robotics
 
-> Phase Robotics builds small precision actuators for robot hands and dexterous manipulators, and the machines that make them. Its aim is to build the motor supply chain in the United States.
+> Phase Robotics is bringing small, precise actuators to the US. It builds actuators for robot hands and dexterous manipulators, and the machines that make them, and is building the actuator supply chain in the United States.
 
 Website: https://phaserobotics.cc/
 Contact: founders@phaserobotics.cc

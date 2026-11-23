@@ -116,9 +116,9 @@ function ogImage() {
     w: 1200, h: 630,
     body: ({ text }) => `<div style="position:absolute;inset:0;padding:64px 72px;display:flex;flex-direction:column;justify-content:space-between">
       ${brand(text, 34)}
-      <div style="font-size:112px;letter-spacing:-0.045em;line-height:0.95">Small actuators.<br>Precise motion.</div>
+      <div style="font-size:96px;letter-spacing:-0.045em;line-height:0.96">Bringing small, precise<br>actuators to the US.</div>
       <div style="display:flex;justify-content:space-between;align-items:baseline;font-size:26px;font-weight:400">
-        <span>Actuators for robot hands, and the machines that make them.</span>
+        <span>Building actuator supply chains for dexterous manipulators.</span>
         <span class="mono" style="font-size:20px;font-weight:500">PHASEROBOTICS.CC</span>
       </div>
     </div>`,
