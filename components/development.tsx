@@ -3,8 +3,8 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 
 // Each card has an abstract drawing on a colour field. The two drives also show
-// a cut-out product photo in front of it (chip markings covered). Winder-1 has
-// no photo, so nothing about the machine is shown.
+// a cut-out product photo in front of it (chip markings covered). Winder-1 uses
+// a cut-out of its render, kept small and low resolution.
 const WAVES = (
   <svg className="art-lines" viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
     <path d="M0 130H400" opacity="0.5" />
@@ -42,7 +42,7 @@ const PROJECTS: {
   blurb: string
   art: string
   drawing: ReactNode
-  photo?: { src: string; alt: string; width: number; height: number }
+  photo?: { src: string; alt: string; width: number; height: number; bleed?: boolean }
 }[] = [
   {
     name: 'Lunar Drive',
@@ -66,6 +66,8 @@ const PROJECTS: {
     blurb: 'Our own machines for making motors, built so we can iterate, scale and not rely on others.',
     art: 'art-3',
     drawing: COIL,
+    // The render is cropped top and bottom, so it runs off the panel edges
+    photo: { src: '/winder-1-cutout.webp', alt: 'Render of the Winder-1 motor winding machine', width: 511, height: 640, bleed: true },
   },
 ]
 
@@ -108,7 +110,7 @@ export function Development() {
               <span className="art-grain" aria-hidden="true" />
               {project.photo && (
                 <img
-                  className="card-cutout"
+                  className={project.photo.bleed ? 'card-cutout card-cutout--bleed' : 'card-cutout'}
                   src={project.photo.src}
                   alt={project.photo.alt}
                   width={project.photo.width}
