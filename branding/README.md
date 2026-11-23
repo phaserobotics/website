@@ -1,16 +1,16 @@
-# Phase Robotics — Branding Kit
+# Phase Robotics Branding Kit
 
-Monochrome identity built around a **Conway's Game of Life glider**: five live
-cells that travel forever under rule b3/s23. Simple rules, emergent motion —
-which is also the pitch for the actuators.
+The identity matches the website: an off-white or near-black ground, a soft
+blurred field of cobalt and mint, fine film grain, and plain Geist type. The
+mark is a **Conway's Game of Life glider**, five live cells fused into one
+rounded shape.
 
 ---
 
 ## The mark
 
 The glider is drawn on a 3×3 Life grid in its canonical orientation (heading
-down-right), with its five cells fused into one soft shape. Construction, on a
-32-unit box:
+down-right). Construction, on a 32-unit box:
 
 ```
 gapless grid, pitch 10 · margin 1        . X .
@@ -19,56 +19,57 @@ cells (col,row):                         . . X
 outer corners: radius 3 · inner corners: fillet 3
 ```
 
-Orthogonal neighbours merge outright. The top cell, which only touches the rest
-at a corner, joins through a filleted neck: the outline passes through that
-touch point twice, and both passes get the same 3-unit fillet. The canonical
-path is `MARK_D` in `tools/mark.mjs`; the website's `GliderLogo.jsx` and
-`public/glider.svg` embed the same path.
+The canonical path is `MARK_D` in `tools/mark.mjs`. The website's
+`components/glider-logo.tsx` and `public/glider.svg` embed the same path.
 
 **Rules**
 
-- Never rotate or mirror — the glider has a canonical heading; a flipped glider
-  is a different spaceship and the nerds will notice.
-- Ink on paper or paper on ink only. No colors, gradients, outlines, shadows,
-  or container shapes.
+- Never rotate or mirror it. The glider has a canonical heading.
+- The mark itself is always one flat colour: Ink on light, Mist or white on
+  dark. Colour belongs in the field behind it, never in the mark.
 - Clear space: at least one grid cell (10 units) on every side.
 - Minimum sizes: 16 px (mark), 110 px wide (lockup).
-- Use the path as drawn. Don't redraw it from squares, change the radii, or
-  separate the cells.
+- Use the path as drawn. Don't redraw it, change the radii, or separate the cells.
 
-## Wordmark & lockup
+## Wordmark and lockup
 
-JetBrains Mono, letter-spacing 0.12 em: **PHASE** (700, ink) + `ROBOTICS`
-(400, muted). The horizontal lockup places the mark at text cap-height scale
-with a 12-unit gap. Use `logo/svg/lockup-*.svg` — fonts are embedded, so they
-render correctly anywhere.
+`PHASE ROBOTICS` in Geist Mono Medium, uppercase, letter-spacing 0.08em, set to
+the right of the mark. Use `logo/svg/lockup-*.svg`; the font is embedded, so
+they render correctly anywhere.
 
-## Colors
+## Colour
 
 | Token | Hex | Use |
 |---|---|---|
-| ink | `#0a0a0a` | text, marks, borders, dark surfaces |
-| paper | `#ffffff` | background |
-| paper-dim | `#fafafa` | raised / hover surfaces |
-| muted | `#6b6b6b` | secondary text, labels |
-| line | `#e4e4e4` | hairline borders |
-| cell | `#ebebeb` | Life cells, decorative pixels |
+| paper | `#f4f3ee` | light ground |
+| ink | `#0c0d0c` | text on light, the mark, dark buttons |
+| night | `#08090a` | dark ground |
+| mist | `#f2f3f1` | text on dark |
+| muted | `#3f423c` | secondary text on light |
+| muted on dark | `#a8aca6` | secondary text on dark |
+| cobalt | `#1d3fbb` | primary colour field |
+| mint | `#5fd0c0` | secondary colour field |
+| sky, teal, ember, peach | `#8fa8ff` `#0d4a4f` `#c2410c` `#ffb07a` | card accents |
 
-Tokens in `colors/palette.css` and `colors/palette.json`; swatch sheet in
-`colors/palette.png`. On dark surfaces use white at 85/72/55/20 % opacity
-(text / secondary / labels / dividers).
+Tokens are in `colors/palette.css` and `colors/palette.json`, with a swatch
+sheet in `colors/palette.png`.
+
+**The colour field.** Cobalt and mint appear as large, heavily blurred shapes
+low and to the right of a layout, at about half strength, with grain over the
+top. Text never sits in the colours as flat fills. Hairlines are Ink at 14% on
+light and white at 14% on dark.
 
 ## Typography
 
-Sora (headlines) · Inter (body) · JetBrains Mono (labels, specs, code,
-wordmark). Details and conventions in `typography/typography.md`, sample in
-`typography/type-specimen.png`.
+Geist Medium for headlines, Geist Regular for body, Geist Mono Medium for small
+uppercase labels and the wordmark. Details in `typography/typography.md`, sample
+in `typography/type-specimen.png`.
 
 ## Voice
 
-Minimalist and technical. Mono labels are uppercase and prefixed `// `.
-Spec-sheet energy over marketing energy: say `60 A PEAK`, not "unprecedented
-power". The brand keywords are **easy-to-use, affordable, precise, modular**.
+Short and plain. Headlines are two-beat statements with full stops: "Small
+actuators. Precise motion." Say what the thing is and stop. Detailed motor
+specifications stay off public-facing material.
 
 ---
 
@@ -78,52 +79,54 @@ power". The brand keywords are **easy-to-use, affordable, precise, modular**.
 branding/
 ├── logo/
 │   ├── svg/
-│   │   ├── glider-black.svg                 mark, ink on transparent
+│   │   ├── glider-black.svg                 mark, Ink on transparent
 │   │   ├── glider-white.svg                 mark, white on transparent
-│   │   ├── glider-tile-black-on-white.svg   mark on square paper tile
-│   │   ├── glider-tile-white-on-black.svg   mark on square ink tile
-│   │   ├── lockup-black.svg                 mark + wordmark (fonts embedded)
-│   │   └── lockup-white.svg                 inverted lockup (fonts embedded)
+│   │   ├── glider-tile-black-on-white.svg   mark on a Paper tile
+│   │   ├── glider-tile-white-on-black.svg   mark on a Night tile
+│   │   ├── lockup-black.svg                 mark + wordmark (font embedded)
+│   │   └── lockup-white.svg                 inverted lockup (font embedded)
 │   └── png/
 │       ├── glider-{black,white}-1024.png            transparent
 │       ├── glider-tile-*-1024.png                   opaque tiles
-│       └── lockup-{black,white}-2376w.png           transparent, 2376×384
-├── favicon/
-│   ├── favicon.svg · favicon.ico · favicon-16/32/512.png
-│   └── apple-touch-icon-180.png
+│       └── lockup-{black,white}-2376w.png           transparent
+├── favicon/                                 unchanged; the mark is the same
 ├── colors/      palette.css · palette.json · palette.png
 ├── typography/  typography.md · type-specimen.png
 ├── social/
-│   ├── avatar-{white-on-black,black-on-white}-1024.png
-│   ├── banner-x-1500x500.png · banner-linkedin-1584x396.png
-│   └── og-image-1200x630.png                for <meta property="og:image">
-├── explorations/rounded-glider/             logo variants A–D (A was adopted)
+│   ├── avatar-{light,dark,colour}-1024.png
+│   ├── banner-linkedin-1584x396{,-dark}.png           personal profile banner
+│   ├── banner-linkedin-company-1128x191{,-dark}.png   company page cover
+│   ├── banner-x-1500x500{,-dark}.png
+│   └── og-image-1200x630.png                copied to public/og-image.png
+├── explorations/rounded-glider/             earlier logo variants (A was adopted)
 └── tools/
     ├── mark.mjs                             canonical logo path (MARK_D)
     ├── generate.mjs                         regenerates everything above
     └── rounded-glider.mjs                   regenerates the explorations
 ```
 
-The banners put the tagline top-left over the Life grid, with a dark gradient
-from the right revealing a tone-on-tone grid of stator silhouettes. The
-bottom-left stays empty because X and LinkedIn put the profile picture there.
+Banners keep the bottom-left empty, because X and LinkedIn place the profile
+picture there: the lockup sits top-left and the headline is set to the right.
+Each banner comes in a light and a dark version.
 
 ## Regenerating
 
-From the repo root (needs Chrome installed):
+From the repo root, after `npm install` (the Geist fonts come from
+`node_modules/geist`, so no network is needed for type):
 
 ```bash
-npm i --no-save puppeteer-core png-to-ico
+npm i --no-save playwright
+```
+
+```bash
+npx playwright install chromium
+```
+
+```bash
 node branding/tools/generate.mjs
 ```
 
-Everything is derived from `tools/mark.mjs`: `generate.mjs` writes the mark
-SVGs, the font-embedded lockups, every PNG, and the favicon set. If you change
-the mark, also paste the new `MARK_D` into `src/components/GliderLogo.jsx` and
-`public/glider.svg`.
-
 `--only=<name>` re-renders just the matching files, for example
-`node branding/tools/generate.mjs --only=banner`. If Google Fonts is
-unreachable, JetBrains Mono falls back to the copy embedded in the lockup, but
-Sora and Inter (used by the OG image and type specimen) won't load, so render
-those only when online.
+`node branding/tools/generate.mjs --only=banner`. The script also copies the
+social card to `public/og-image.png`. If you change the mark, paste the new
+`MARK_D` into `components/glider-logo.tsx` and `public/glider.svg` as well.

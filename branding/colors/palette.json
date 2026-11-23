@@ -1,18 +1,22 @@
 {
   "name": "Phase Robotics",
-  "mode": "monochrome",
+  "mode": "light and dark, with a blurred two-colour field",
   "colors": {
-    "ink":      { "hex": "#0a0a0a", "use": "primary: text, marks, borders, dark surfaces" },
-    "paper":    { "hex": "#ffffff", "use": "background" },
-    "paperDim": { "hex": "#fafafa", "use": "raised and hover surfaces" },
-    "muted":    { "hex": "#6b6b6b", "use": "secondary text, labels" },
-    "line":     { "hex": "#e4e4e4", "use": "hairline borders, dividers" },
-    "cell":     { "hex": "#ebebeb", "use": "Game of Life cells, decorative pixels" }
+    "paper":       { "hex": "#f4f3ee", "use": "light ground" },
+    "ink":         { "hex": "#0c0d0c", "use": "text on light, the mark, dark buttons" },
+    "night":       { "hex": "#08090a", "use": "dark ground" },
+    "mist":        { "hex": "#f2f3f1", "use": "text on dark" },
+    "muted":       { "hex": "#3f423c", "use": "secondary text on light" },
+    "mutedOnDark": { "hex": "#a8aca6", "use": "secondary text on dark" },
+    "cobalt":      { "hex": "#1d3fbb", "use": "primary colour field" },
+    "mint":        { "hex": "#5fd0c0", "use": "secondary colour field" },
+    "sky":         { "hex": "#8fa8ff", "use": "card accent, with cobalt" },
+    "teal":        { "hex": "#0d4a4f", "use": "card accent, with mint" },
+    "ember":       { "hex": "#c2410c", "use": "card accent" },
+    "peach":       { "hex": "#ffb07a", "use": "card accent, with ember" }
   },
-  "onDark": {
-    "text":      "rgba(255,255,255,0.85)",
-    "secondary": "rgba(255,255,255,0.72)",
-    "label":     "rgba(255,255,255,0.55)",
-    "divider":   "rgba(255,255,255,0.20)"
+  "lines": {
+    "onLight": "rgba(12,13,12,0.14)",
+    "onDark":  "rgba(255,255,255,0.14)"
   }
 }
