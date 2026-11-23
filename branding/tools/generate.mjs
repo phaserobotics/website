@@ -126,8 +126,8 @@ function ogImage() {
 }
 
 function avatar(variant) {
-  const dark = variant !== 'light'
-  const field = variant === 'colour'
+  const dark = variant === 'dark' || variant === 'colour'
+  const field = variant.startsWith('colour')
   return scene({
     w: 1024, h: 1024, dark, field,
     body: ({ text }) => `<div style="position:absolute;inset:0;display:grid;place-items:center">${mark(text, 460)}</div>`,
@@ -228,6 +228,7 @@ for (const [name, w, h] of [['linkedin-1584x396', 1584, 396], ['linkedin-company
 await render(avatar('light'), 1024, 1024, 'social/avatar-light-1024.png')
 await render(avatar('dark'), 1024, 1024, 'social/avatar-dark-1024.png')
 await render(avatar('colour'), 1024, 1024, 'social/avatar-colour-1024.png')
+await render(avatar('colour-light'), 1024, 1024, 'social/avatar-colour-light-1024.png')
 await render(ogImage(), 1200, 630, 'social/og-image-1200x630.png')
 if (!ONLY || 'og-image'.includes(ONLY)) copyFileSync(path.join(OUT, 'social/og-image-1200x630.png'), path.join(ROOT, 'public/og-image.png'))
 

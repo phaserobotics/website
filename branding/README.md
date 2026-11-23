@@ -93,7 +93,7 @@ branding/
 ├── colors/      palette.css · palette.json · palette.png
 ├── typography/  typography.md · type-specimen.png
 ├── social/
-│   ├── avatar-{light,dark,colour}-1024.png
+│   ├── avatar-{light,dark,colour,colour-light}-1024.png
 │   ├── banner-linkedin-1584x396{,-dark}.png           personal profile banner
 │   ├── banner-linkedin-company-1128x191{,-dark}.png   company page cover
 │   ├── banner-x-1500x500{,-dark}.png
