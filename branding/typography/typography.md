@@ -1,21 +1,20 @@
-# Phase Robotics — Typography
+# Typography
 
-See `type-specimen.png` for a visual sample.
+Two typefaces, both open source (SIL Open Font License) and both from the
+[`geist`](https://www.npmjs.com/package/geist) package the website already uses.
 
-| Role | Font | Weights | Notes |
-|---|---|---|---|
-| Headlines | **Sora** | 600, 700 | Tight tracking (−0.02 to −0.03 em) |
-| Body | **Inter** | 400, 500 | Default reading text |
-| Labels / specs / code / wordmark | **JetBrains Mono** | 400, 700 | UPPERCASE with wide tracking (+0.12 to +0.18 em) |
+| Role | Face | Weight | Tracking | Notes |
+|---|---|---|---|---|
+| Headlines | Geist | Medium (500) | -0.045em | Line height 0.95 to 0.98. Sentence case, full stop at the end. |
+| Sub-headings | Geist | Medium (500) | -0.02em to -0.035em | |
+| Body | Geist | Regular (400) | 0 | Line height 1.45 to 1.5. Secondary text in Muted. |
+| Labels, status, wordmark | Geist Mono | Medium (500) | +0.08em | Uppercase, 11 to 13px on screen. |
 
-All three are free Google Fonts (OFL licensed):
-<https://fonts.google.com/share?selection.family=Sora:wght@400;600;700|Inter:wght@400;500|JetBrains+Mono:wght@400;700>
+Conventions:
 
-## Conventions
+- Headlines are short and declarative: "Small actuators. Precise motion."
+- Mono is for small labels only (status tags, the wordmark, the domain). It is
+  never used for running text.
+- No italics, no bold beyond Medium, no all-caps headlines.
 
-- Section labels are mono, uppercase, prefixed with `// ` and numbered: `// 02 — PRODUCTS`
-- Spec values are mono: `POSITION / VELOCITY / TORQUE`, `CAN 500K`, `b3/s23`
-- The wordmark is JetBrains Mono: **PHASE** at weight 700 in ink, `ROBOTICS` at
-  weight 400 in muted, letter-spacing 0.12 em, single space between words
-- A blinking block cursor (`▮`, 0.5 em × 0.85 em of the type size) may terminate
-  headlines in animated contexts; keep it solid in static assets
+See `type-specimen.png` for a sample.

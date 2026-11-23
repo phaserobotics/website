@@ -1,112 +1,71 @@
 # Phase Robotics Website
 
-Minimalist black & white site for Phase Robotics — easy-to-use, affordable,
-precise, modular robotic actuators. Features a live Conway's Game of Life hero
-(the logo is a glider), ASCII/pixel-art accents, and interactive 3D PCB viewers
-exported straight from the KiCad sources.
+Single-page site for Phase Robotics: small precision actuators for robot hands,
+and the machines that make them. Off-white (or near-black) ground, blurred
+colour, film grain, and three "in development" cards with abstract line
+drawings. Light and dark modes.
+
+Page order: hero, in development, vision, early access footer.
 
 ## Project Structure
 
 ```
 website/
-├── public/                    # Static assets (copied to dist on build)
-│   ├── .htaccess              # Apache routing rules for SPA
-│   ├── glider.svg             # Logo / favicon (Conway glider)
-│   ├── phalanx_exploded.png   # Phalanx cycloidal reducer exploded view
-│   ├── draco/                 # Draco decoder (for compressed GLB models)
-│   └── models/
-│       ├── lunar-drive.glb    # Lunar Drive V2.1 PCB (kicad-cli export, Draco-compressed)
-│       └── phalanx-drive.glb  # Phalanx Drive PCB (kicad-cli export, Draco-compressed)
-├── src/
-│   ├── main.jsx               # React entry point
-│   ├── App.jsx                # Layout + scroll-reveal observer
-│   ├── index.css              # Global styles & CSS variables
-│   └── components/
-│       ├── Navbar.jsx/css     # Fixed header with glider logo
-│       ├── Hero.jsx/css       # Headline over interactive Game of Life
-│       ├── GameOfLife.jsx     # Canvas Life sim (hero bg + footer strip)
-│       ├── GliderLogo.jsx     # Inline SVG glider mark
-│       ├── Ticker.jsx/css     # Scrolling spec marquee
-│       ├── Features.jsx/css   # Why Phase (pixel-art icons)
-│       ├── PixelIcon.jsx      # 7x7 pixel-grid icons
-│       ├── Products.jsx/css   # Lunar Drive V2.1, Phalanx Drive, Atlas teaser
-│       ├── ModelViewer.jsx/css# Lazy three.js GLB viewer (Draco)
-│       ├── About.jsx/css      # Mission + animated ASCII actuator
-│       ├── AsciiActuator.jsx  # ASCII diagram with spinning rotor
-│       └── Footer.jsx/css     # Footer with a lone glider orbiting forever
-├── index.html                 # HTML entry point
-├── vite.config.js             # Vite configuration
-└── package.json               # Dependencies
+├── app/
+│   ├── layout.tsx         # Fonts, metadata, structured data, theme provider
+│   ├── page.tsx           # The page: nav, hero, development, vision, footer
+│   ├── not-found.tsx      # 404 page (exported as 404.html)
+│   └── globals.css        # Design tokens (light/dark) and the motion/texture CSS
+├── components/
+│   ├── site-nav.tsx       # Floating nav, theme button, phone dropdown menu
+│   ├── hero.tsx
+│   ├── development.tsx    # Swipeable/grid cards and their drawings
+│   ├── vision.tsx         # Vision copy; accordion on phones
+│   ├── site-footer.tsx    # Early access call to action and footer bar
+│   ├── copy-email.tsx     # Email link with copy icon and confirmation
+│   ├── theme-toggle.tsx, theme-provider.tsx, glider-logo.tsx
+│   └── ui/                # shadcn/ui components (button, accordion, dropdown-menu, tooltip)
+├── public/                # Icons, noise tiles, robots.txt, sitemap, _headers
+├── branding/              # Brand kit (logo, colours, type)
+├── next.config.mjs        # Static export into dist/
+└── wrangler.jsonc         # Cloudflare Worker serving dist/ as static assets
 ```
-
-## Regenerating the 3D models
-
-The PCB models are exported from the KiCad projects with `kicad-cli`, then
-Draco-compressed for the web:
-
-```bash
-kicad-cli pcb export glb --force --subst-models --include-tracks --include-pads \
-  --include-silkscreen --include-soldermask --no-dnp \
-  -o public/models/lunar-drive.glb <path-to>/LunarDriveV2/PCB/LunarDrive.kicad_pcb
-
-kicad-cli pcb export glb --force --subst-models --include-tracks --include-pads \
-  --include-silkscreen --include-soldermask --no-dnp \
-  -o public/models/phalanx-drive.glb <path-to>/PhalanxDrive/PCB/PhalanxDrive.kicad_pcb
-
-npx @gltf-transform/cli optimize public/models/lunar-drive.glb public/models/lunar-drive.glb --compress draco --texture-compress false
-npx @gltf-transform/cli optimize public/models/phalanx-drive.glb public/models/phalanx-drive.glb --compress draco --texture-compress false
-```
-
-The Draco decoder in `public/draco/` comes from
-`node_modules/three/examples/jsm/libs/draco/gltf/`.
 
 ## Development
 
-### Prerequisites
-- Node.js 18+
-- npm
+Requires Node.js 20+.
 
-### Install Dependencies
 ```bash
 npm install
 ```
 
-### Start Development Server
 ```bash
 npm run dev
 ```
-The site will be available at `http://localhost:5173`
 
-### Preview Production Build
-```bash
-npm run preview
-```
+The site runs at `http://localhost:3000`.
 
-## Building for Production
+## Building and deploying
 
 ```bash
 npm run build
 ```
 
-This creates a `dist/` folder with all static files ready for deployment.
+`next build` statically exports the site into `dist/`. Cloudflare serves that
+directory as Worker assets (see `wrangler.jsonc`); pushes to a branch get a
+preview deployment, and `npm run deploy` builds and deploys by hand.
 
-## Deploying to cPanel
+To add another shadcn/ui component:
 
-1. `npm run build`
-2. Log into cPanel → **File Manager** → `public_html` (or your target directory)
-3. Upload ALL contents of `dist/` (including `.htaccess`, `glider.svg`,
-   `models/`, and `draco/`)
-
-### Deploying to a Subfolder
-If deploying to `yourdomain.com/phase-robotics/` instead of root:
-
-1. Edit `vite.config.js`: `base: '/phase-robotics/',`
-2. Rebuild: `npm run build`
-3. Upload `dist/` contents to the `phase-robotics/` folder in cPanel
+```bash
+npx shadcn@latest add <component>
+```
 
 ## Tech Stack
 
-- React 18
-- Three.js (GLB viewers + Draco decoding)
-- Vite
-- CSS Variables
+- Next.js (App Router, static export) and React
+- Tailwind CSS v4
+- shadcn/ui components on Radix UI, lucide-react icons
+- next-themes for light and dark mode
+- Geist and Geist Mono typefaces
+- Cloudflare Workers static assets

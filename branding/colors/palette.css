@@ -1,9 +1,18 @@
-/* Phase Robotics — color tokens (matches src/index.css on the website) */
+/* Phase Robotics colour tokens. These match app/globals.css on the website. */
 :root {
-  --phase-ink: #0a0a0a;    /* primary: text, marks, borders, dark surfaces */
-  --phase-paper: #ffffff;  /* background */
-  --phase-paper-dim: #fafafa; /* raised/hover surfaces */
-  --phase-muted: #6b6b6b;  /* secondary text, labels */
-  --phase-line: #e4e4e4;   /* hairline borders, dividers */
-  --phase-cell: #ebebeb;   /* Game of Life cells, decorative pixels */
+  --phase-paper: #f4f3ee;         /* light ground */
+  --phase-ink: #0c0d0c;           /* text on light, the mark, dark buttons */
+  --phase-night: #08090a;         /* dark ground */
+  --phase-mist: #f2f3f1;          /* text on dark */
+  --phase-muted: #3f423c;         /* secondary text on light */
+  --phase-muted-on-dark: #a8aca6; /* secondary text on dark */
+
+  --phase-cobalt: #1d3fbb;        /* primary colour field */
+  --phase-mint: #5fd0c0;          /* secondary colour field */
+
+  /* Card accents, used in pairs inside the "in development" cards */
+  --phase-sky: #8fa8ff;           /* with cobalt */
+  --phase-teal: #0d4a4f;          /* with mint */
+  --phase-ember: #c2410c;
+  --phase-peach: #ffb07a;         /* with ember */
 }

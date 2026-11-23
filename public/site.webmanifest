@@ -1,15 +1,31 @@
 {
   "name": "Phase Robotics",
   "short_name": "Phase",
-  "description": "Small precision robotic actuators, BLDC motor drives and cycloidal servos for robot hands and dexterous manipulators.",
+  "description": "Small precision actuators for robot hands and dexterous manipulators, and the machines that make them.",
   "start_url": "/",
   "display": "browser",
-  "background_color": "#ffffff",
-  "theme_color": "#0a0a0a",
+  "background_color": "#f4f3ee",
+  "theme_color": "#f4f3ee",
   "icons": [
-    { "src": "/glider.svg", "sizes": "any", "type": "image/svg+xml" },
-    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
-    { "src": "/favicon-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
+    {
+      "src": "/glider.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
   ]
 }
