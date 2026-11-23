@@ -54,7 +54,7 @@ export function SiteNav() {
             <ThemeToggle />
           </span>
 
-          <Button asChild className="hidden sm:inline-flex">
+          <Button asChild className="hidden rounded-lg sm:inline-flex">
             <a href="#access">Request access</a>
           </Button>
 
@@ -63,7 +63,7 @@ export function SiteNav() {
             <DropdownMenuTrigger asChild>
               <button
                 type="button"
-                className="inline-flex size-11 shrink-0 cursor-pointer items-center justify-center border border-(--btn-edge) text-foreground outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50 sm:hidden"
+                className="inline-flex size-11 shrink-0 cursor-pointer items-center justify-center rounded-lg border border-(--btn-edge) text-foreground outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50 sm:hidden"
                 aria-label={open ? 'Close menu' : 'Open menu'}
               >
                 {open ? <X className="size-[18px]" strokeWidth={1.5} /> : <Menu className="size-[18px]" strokeWidth={1.5} />}
@@ -73,7 +73,7 @@ export function SiteNav() {
               align="center"
               collisionPadding={12}
               sideOffset={14}
-              className="w-[calc(100vw-24px)] p-2 shadow-[0_24px_48px_-24px_var(--shadow)] duration-200 sm:hidden"
+              className="w-[calc(100vw-24px)] rounded-[14px] p-2 shadow-[0_24px_48px_-24px_var(--shadow)] duration-200 sm:hidden"
             >
               {LINKS.map((link) => (
                 <DropdownMenuItem key={link.href} asChild className="h-13 cursor-pointer justify-between border-b px-3 text-[17px]">

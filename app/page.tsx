@@ -1,3 +1,4 @@
+import { FlagSketch } from '@/components/flag-sketch'
 import { Development } from '@/components/development'
 import { Hero } from '@/components/hero'
 import { SiteFooter } from '@/components/site-footer'
@@ -9,6 +10,7 @@ export default function HomePage() {
     <div id="top" className="relative overflow-clip">
       <div className="blob blob-a" aria-hidden="true" />
       <div className="blob blob-b" aria-hidden="true" />
+      <FlagSketch />
       <div className="grain" aria-hidden="true" />
 
       <SiteNav />

@@ -29,6 +29,8 @@
   --glass-soft: rgba(255, 255, 255, 0.5);
   --nav-glass: rgba(255, 255, 255, 0.62);
   --nav-solid: rgba(250, 250, 247, 0.95);
+  --flag-stroke: rgba(12, 13, 12, 0.2);
+  --flag-star: rgba(12, 13, 12, 0.4);
   --card-solid: rgba(255, 255, 255, 0.74);
   --card-base: #e9e7df;
   --card-hover-edge: rgba(12, 13, 12, 0.4);
@@ -68,6 +70,8 @@
   --glass-soft: rgba(255, 255, 255, 0.04);
   --nav-glass: rgba(20, 22, 26, 0.6);
   --nav-solid: rgba(16, 18, 21, 0.95);
+  --flag-stroke: rgba(255, 255, 255, 0.2);
+  --flag-star: rgba(255, 255, 255, 0.42);
   --card-solid: rgba(22, 24, 28, 0.88);
   --card-base: #0e1014;
   --card-hover-edge: rgba(255, 255, 255, 0.4);
@@ -172,6 +176,28 @@
   opacity: var(--grain-opacity);
   transform: translateZ(0);
 }
+/* Sketched flag: above the colour field, faded out behind the headline */
+.flag {
+  position: absolute;
+  left: 50%;
+  top: 40px;
+  width: min(1180px, 150vw);
+  translate: -50% 0;
+  rotate: -5deg;
+  fill: none;
+  stroke: var(--flag-stroke);
+  stroke-width: 1.3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
+  -webkit-mask-image: radial-gradient(ellipse 40% 32% at 52% 45%, rgba(0, 0, 0, 0.14) 50%, #000 100%), radial-gradient(closest-side, #000 78%, transparent 100%);
+  mask-image: radial-gradient(ellipse 40% 32% at 52% 45%, rgba(0, 0, 0, 0.14) 50%, #000 100%), radial-gradient(closest-side, #000 78%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+.flag-stars { stroke: var(--flag-star); stroke-width: 1.5; }
+/* On phones the text covers more of the flag, so the whole sketch is lighter */
+@media (max-width: 639px) { .flag { opacity: 0.55; } }
 @keyframes drift-a { to { transform: translate(90px, -30px) scale(1.08); } }
 @keyframes drift-b { to { transform: translate(-140px, 40px) scale(0.92); } }
 
@@ -195,6 +221,7 @@
   inset: 0;
   z-index: -1;
   border: 1px solid var(--border);
+  border-radius: 14px;
   background: var(--nav-solid);
   box-shadow: 0 12px 32px -16px var(--shadow);
   opacity: 0;
@@ -217,6 +244,7 @@
 @keyframes nav-detach {
   to {
     height: 56px;
+    border-radius: 14px;
     margin: 0 max(12px, env(safe-area-inset-right, 0px)) 0 max(12px, env(safe-area-inset-left, 0px));
     padding-left: 20px;
     padding-right: 6px;
@@ -234,6 +262,7 @@
   content: "";
   position: absolute;
   inset: 0;
+  border-radius: 8px;
   border: 1px solid var(--btn-edge);
   transition: border-color 0.25s, rotate 0.5s cubic-bezier(0.2, 0.7, 0.2, 1), scale 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
